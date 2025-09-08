@@ -22,4 +22,8 @@ export default function GalleryStack() {
             />
         </Stack.Navigator>
     );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 499922989cd8c84ad94c4bdc86c0f0e420850997
