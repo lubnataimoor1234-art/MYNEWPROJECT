@@ -1,25 +1,15 @@
-// src/navigation/OrdersStack.js
+// OrdersStack.js
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import OrdersScreen from '../screens/OrdersScreen';
-import COLORS from '../constants/COLORS';
-import STRINGS from '../constants/STRINGS';
+import { createStackNavigator } from '@react-navigation/stack';
+import OrdersTabNavigator from './OrdersTabNavigator'; // path to tab file
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function OrdersStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="OrdersMain"
-        component={OrdersScreen}
-        options={{
-          title: STRINGS.orderList,
-          headerStyle: { backgroundColor: COLORS.black },
-          headerTintColor: COLORS.white,
-          headerTitleAlign: 'center',
-        }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tabs" component={OrdersTabNavigator} />
+      {/* You can add more screens here later if needed */}
     </Stack.Navigator>
   );
 }

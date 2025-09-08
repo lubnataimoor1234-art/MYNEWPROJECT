@@ -50,7 +50,7 @@ const OrdersScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Trial Plan Banner */}
+     
       <View style={styles.trialBanner}>
         <Text style={styles.trialBannerText}>Your Trial Plan expires in 29 days!</Text>
         <TouchableOpacity style={styles.buyNowButton}>
@@ -58,7 +58,6 @@ const OrdersScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Tabs */}
       <Tab.Navigator
         screenOptions={{
           tabBarScrollEnabled: true,
@@ -75,14 +74,14 @@ const OrdersScreen = () => {
         <Tab.Screen name="In Transit" component={InTransitTab} />
       </Tab.Navigator>
 
-      {/* Text Section */}
+
       <View style={styles.textSection}>
         <Text style={styles.showingText}>
           Showing Last 90 Days orders. <Text style={styles.editText}>Edit</Text>
         </Text>
       </View>
 
-      {/* Center Content */}
+      
       <View style={styles.centerContent}>
         <Text style={styles.welcomeText}>Welcome to TailorMate!</Text>
         <TouchableOpacity style={styles.addOrderButton}>
@@ -240,7 +239,8 @@ export default OrdersScreen;
     
 //   },
 //   activeTab: {
-//     borderBottomColor: '#000',
+//     borderBottomColor: '#000',git init
+
     
 //   },
 //   activeTabText: {
