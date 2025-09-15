@@ -14,9 +14,7 @@ export default function ReportsStack() {
                 component={ReportsScreen}
                 options={{
                     title: STRINGS.orderList,
-                    headerStyle: { backgroundColor: COLORS.black },
-                    headerTintColor: COLORS.white,
-                    headerTitleAlign: 'center',
+                    headerShow : false,
                 }}
             />
         </Stack.Navigator>

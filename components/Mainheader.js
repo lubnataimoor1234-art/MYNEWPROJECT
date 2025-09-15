@@ -1,51 +1,48 @@
-// import { StyleSheet, Text, View } from 'react-native';
-// import React from 'react';
-// import Feather from 'react-native-vector-icons/Feather';
-// import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
-// import Colors from '../utils/i vdswa ht578ik,m zsdfghjkufdzzdfyuiuhgfxcolorUtil';
 
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import Colors from '../utils/colorUtil';
-const MainHeader = ({ title = 'Order List', onAddPress }) => {
+import COLORS from '../constants/COLORS';
+const MainHeader = ({ title, onAddPress  }) => {
   const navigation = useNavigation();
 
-  return (
-    <View style={styles.headerContainer}>
-      {/* Drawer Icon */}
+ return (
+    <View style={styles.header}>
+      
+
       <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-        <Ionicons name="menu" size={24} color={Colors.white} />
+        <Ionicons name="menu" size={24} color={COLORS.white} />
       </TouchableOpacity>
+<Text style={styles.title}>{title}</Text>
+      
 
-      {/* Title */}
-      <Text style={styles.title}>{title}</Text>
-
-      {/* Plus (+) icon */}
-      <TouchableOpacity onPress={onAddPress}>
-        <Ionicons name="add" size={24} color={Colors.white} />
-      </TouchableOpacity>
+      {onAddPress ? (
+        <TouchableOpacity onPress={onAddPress}>
+          <Ionicons name="add" size={24} color={COLORS.white} />
+        </TouchableOpacity>
+      ) : (
+        <View style={{ width: 5 }} /> 
+      )}
     </View>
   );
 };
 
-export default MainHeader;
 const styles = StyleSheet.create({
-  headerContainer: {
+  header: {
     height: 100,
-    backgroundColor: Colors.black,
+    backgroundColor: '#000',
+    paddingHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 40, // status bar spacing
   },
   title: {
-    color: Colors.white,
-    fontSize: 22,
-    fontWeight: '600',
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: '500',
+    alignContent: 'center',
   },
 });
 
-
+export default MainHeader;

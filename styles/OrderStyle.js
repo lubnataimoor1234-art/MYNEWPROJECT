@@ -1,200 +1,112 @@
+
 import { StyleSheet } from 'react-native';
-import COLORS from '../constants/COLORS';
-import SIZES from '../constants/SIZES';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: '#fff',
   },
   trialBanner: {
-    backgroundColor: COLORS.purple,
+    backgroundColor: '#9B30FF',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignItems: 'center',
   },
   trialBannerText: {
-    color: COLORS.white,
-    fontWeight: '600',
+    color: '#fff',
+    fontSize: 14,
   },
   buyNowButton: {
-    backgroundColor: COLORS.black,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 5,
+    backgroundColor: '#000',
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 4,
   },
   buyNowText: {
-    color: COLORS.white,
-    fontWeight: '600',
+    color: '#fff',
+    fontSize: 13,
+  },
+
+
+  tabLabelStyle: {
+    fontSize: 14,
+    fontWeight: '500',
+    textTransform: 'capitalize',
+  },
+  tabIndicator: {
+    backgroundColor: '#000',
+    height: 2,
+  },
+
+  fullTabScreen: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+
+  centeredContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+
+
+  textSection: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+  },
+  showingText: {
+    fontSize: 14,
+    color: '#555',
+  },
+  editText: {
+    color: '#000',
+    textDecorationLine: 'underline',
+  },
+
+  noTaskText: {
+    fontSize: 16,
+    marginBottom: 12,
+    color: '#333',
+    textAlign: 'center',
+  },
+  manageButton: {
+    backgroundColor: '#000',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 24,
+  },
+  addOrderText: {
+    color: '#fff',
+    fontSize: 16,
   },
   tabContent: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+    dropdownMenu: {
+    position: 'absolute',
+    right: 15,
+    top: 50, 
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    elevation: 5,
+    zIndex: 1000,
+    padding: 10,
   },
-  tabLabel: {
-    fontSize: 14,
-    color: COLORS.darkText,
+  menuItem: {
+    paddingVertical: 10,
   },
-  tabLabelStyle: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: COLORS.darkText,
+  menuText: {
+    fontSize: 16,
   },
-  tabIndicator: {
-    backgroundColor: COLORS.black,
-    height: 2,
-  },
-  textSection: {
-    paddingHorizontal: 16,
-    marginTop: 10,
-  },
-  showingText: {
-    fontSize: SIZES.h4,
-    color: COLORS.darkText,
-  },
-  editText: {
-    color: COLORS.link,
-    textDecorationLine: 'underline',
-  },
-  centerContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  welcomeText: {
-    fontSize: SIZES.h4,
-    marginBottom: 10,
-    color: COLORS.darkText,
-  },
-  addOrderButton: {
-    backgroundColor: COLORS.black,
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 30,
-  },
-  addOrderText: {
-    color: COLORS.white,
-    fontSize: SIZES.h4,
-    fontWeight: '600',
-  },
-  headerIcon: {
-    marginRight: 15,
   },
 });
-// styles/OrderStyle.js
-// import { StyleSheet } from 'react-native';
-// import COLORS from '../constants/COLORS';
 
-// export default StyleSheet.create({
-//   container: { flex: 1, backgroundColor: COLORS.white },
 
-//   // Header button
-//   headerIcon: { marginRight: 15 },
 
-//   // Banner at top
-//   trialBanner: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     backgroundColor: COLORS.purple,
-//     paddingVertical: 8,
-//     paddingHorizontal: 12,
-//     alignItems: 'center',
-//   },
-//   trialBannerText: {
-//     color: COLORS.white,
-//     fontSize: 13,
-//   },
-//   buyNowButton: {
-//     backgroundColor: COLORS.black,
-//     paddingVertical: 5,
-//     paddingHorizontal: 10,
-//     borderRadius: 4,
-//   },
-//   buyNowText: {
-//     color: COLORS.white,
-//     fontSize: 13,
-//     fontWeight: '600',
-//   },
 
-//   // Tab labels and indicator
-//   tabBarStyle: {
-//     backgroundColor: COLORS.white,
-//     borderBottomWidth: 1,
-//     borderColor: COLORS.lightGray,
-//     elevation: 0,
-//     shadowOpacity: 0,
-//   },
-//   tabLabelStyle: {
-//     fontSize: 15,
-//     fontWeight: '500',
-//     textTransform: 'none',
-//     marginHorizontal: 12,
-//   },
-//   tabIndicator: {
-//     backgroundColor: COLORS.black,
-//     height: 2,
-//   },
 
-//   // Section under tabs
-//   textSection: {
-//     paddingHorizontal: 16,
-//     marginTop: 10,
-//   },
-//   showingText: {
-//     fontSize: SIZES.h4,
-//     color: COLORS.darkText,
-//   },
-//   editText: {
-//     color: COLORS.link,
-//     textDecorationLine: 'underline',
-//   },
-//   orderInfoBox: {
-//     borderBottomWidth: 1,
-//     borderColor: COLORS.lightGray,
-//     paddingVertical: 10,
-//     paddingHorizontal: 15,
-//   },
-//   orderInfo: {
-//     fontSize: 14,
-//     color: COLORS.gray,
-//   },
-//   editText: {
-//     color: COLORS.black,
-//     textDecorationLine: 'underline',
-//     fontWeight: '500',
-//   },
 
-//   // Empty state content
-//   centerContent: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   welcomeText: {
-//     fontSize: 16,
-//     color: COLORS.gray,
-//     marginBottom: 20,
-//   },
-//   addOrderButton: {
-//     backgroundColor: COLORS.black,
-//     paddingVertical: 12,
-//     paddingHorizontal: 30,
-//     borderRadius: 30,
-//   },
-//   addOrderText: {
-//     color: COLORS.white,
-//     fontSize: 16,
-//   },
-
-//   // Tab screen placeholder
-//   tabContent: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   tabLabel: {
-//     fontSize: 16,
-//     color: COLORS.gray,
-//   },
-// });

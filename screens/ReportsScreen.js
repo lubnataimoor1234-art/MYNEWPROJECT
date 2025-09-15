@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-
+import MainHeader from '../components/MainHeader';
 const salesData = [
+    
     {id: "s1", title: "Total Sales", amount: 0},
     {id: "s2", title: "Total Payments", amount: 0},
     {id: "s3", title: "Material Sales", amount: 0},
@@ -31,7 +32,9 @@ const ReportsScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Tabs */}
+  <MainHeader
+      title="Report"
+    />
             <View style={styles.tabsContainer}>
                 {tabs.map((tab) => (
                     <TouchableOpacity
@@ -46,10 +49,7 @@ const ReportsScreen = () => {
                 ))}
             </View>
 
-            {/* Date */}
             <Text style={styles.date}>Date : Sept 7, 2025 ✎</Text>
-
-            {/* Sales Section */}
             <Text style={styles.sectionTitle}>{activeTab} Sales Report</Text>
             <FlatList
                 data={salesData}
@@ -58,8 +58,6 @@ const ReportsScreen = () => {
                 numColumns={2}
                 columnWrapperStyle={styles.row}
             />
-
-            {/* Orders Section */}
             <Text style={styles.sectionTitle}>{activeTab} Orders Report</Text>
             <FlatList
                 data={ordersData}
@@ -87,7 +85,7 @@ const cardSize = width / 2 - 30;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#F8F8F8",
-        padding: 16,
+         
     },
     tabsContainer: {
         width: 400,
@@ -96,6 +94,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         overflow: "hidden",
         marginBottom: 16,
+        marginTop: 10,
         alignSelf: "center"
     },
     tab: {

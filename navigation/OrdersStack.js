@@ -1,15 +1,25 @@
-// OrdersStack.js
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import OrdersTabNavigator from './OrdersTabNavigator'; // path to tab file
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OrderScreen from '../screens/OrderScreen';
+import CustomerScreen from '../screens/CustomerScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function OrdersStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Tabs" component={OrdersTabNavigator} />
-      {/* You can add more screens here later if needed */}
+    <Stack.Navigator>
+      <Stack.Screen
+        name="OrderScreen"
+        component={OrderScreen}
+        options={{
+          headerShown: false, 
+        }}
+      />
+<Stack.Screen
+ name="CustomerScreen" 
+ component={CustomerScreen} options={{ headerShown: false }} />
+<Stack.Screen name="AddOrderOption" component={AddOrderOptionScreen} />
+
     </Stack.Navigator>
   );
 }

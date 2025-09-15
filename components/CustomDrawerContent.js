@@ -1,10 +1,14 @@
+
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+const IconLibraries = {
+  Ionicons,
+  MaterialIcons,
+  FontAwesome5,
+};
 
 const menuItems = [
   { label: 'Orders', icon: 'cart-outline', iconLib: 'Ionicons' },
@@ -22,42 +26,37 @@ const menuItems = [
   { label: 'Contact Us', icon: 'call-outline', iconLib: 'Ionicons' },
 ];
 
-  
-
 export default function CustomDrawerContent({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Profile Section */}
+      
       <View style={styles.profileContainer}>
         <View style={styles.avatar} />
-        <Text style={styles.shopName}>my shope</Text>
+        <Text style={styles.shopName}>My Shop</Text>
         <Text style={styles.shopLocation}>DHA</Text>
       </View>
 
-      {/* Menu Items */}
+    
       <View style={styles.menuContainer}>
-        {menuItems.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.menuItem}
-            onPress={() => {
-              navigation.navigate(item.label);
-            }}
-          >
-            {
-  item.iconLib === 'Ionicons' ? (
-    <Ionicons name={item.icon} size={22} color="#000" style={styles.icon} />
-  ) : item.iconLib === 'MaterialIcons' ? (
-    <MaterialIcons name={item.icon} size={22} color="#000" style={styles.icon} />
-  ) : (
-    <FontAwesome5 name={item.icon} size={22} color="#000" style={styles.icon} />
-  )
-}
+        {menuItems.map((item, index) => {
+          const IconComponent = IconLibraries[item.iconLib];
 
-            <Ionicons name={item.icon} size={22} color="#000" style={styles.icon} />
-            <Text style={styles.menuText}>{item.label}</Text>
-          </TouchableOpacity>
-        ))}
+          return (
+            <TouchableOpacity
+              key={index}
+              style={styles.menuItem}
+              onPress={() => navigation.navigate(item.label)}
+            >
+              <IconComponent
+                name={item.icon}
+                size={22}
+                color="#000"
+                style={styles.icon}
+              />
+              <Text style={styles.menuText}>{item.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </ScrollView>
   );
