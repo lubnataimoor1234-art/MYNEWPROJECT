@@ -99,6 +99,7 @@ const GalleryScreen = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.card}
+      
       onPress={() => navigation.navigate("ImageView", { image: item.image })}
     >
       <Text style={styles.title}>{item.title}</Text>

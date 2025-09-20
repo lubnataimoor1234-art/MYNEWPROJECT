@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -8,6 +7,7 @@ import ReportsStack from './navigation/ReportsStack';
 import CustomDrawerContent from './components/CustomDrawerContent';
 import BottomTabNavigator from './navigation/BottomTabNavigator'; 
 import { navigationRef } from './navigation/NavigationService';
+
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -28,5 +28,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 
 

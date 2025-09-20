@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/COLORS';
-const MainHeader = ({ title, onAddPress  }) => {
+const MainHeader = ({ title, onPress  }) => {
   const navigation = useNavigation();
 
  return (
@@ -17,8 +17,9 @@ const MainHeader = ({ title, onAddPress  }) => {
 <Text style={styles.title}>{title}</Text>
       
 
-      {onAddPress ? (
-        <TouchableOpacity onPress={onAddPress}>
+      {onPress ? (
+        <TouchableOpacity onPress={onPress}>
+          
           <Ionicons name="add" size={24} color={COLORS.white} />
         </TouchableOpacity>
       ) : (

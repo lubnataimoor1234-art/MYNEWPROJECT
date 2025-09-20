@@ -6,8 +6,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -15,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import MainHeader from '../components/MainHeader';
 import styles from '../styles/OrderStyle';
 import STRINGS from '../constants/STRINGS';
-import AddOrderScreen from './AddOrderScreen';
+import AddOrderOption from '../components/AddOrderOption';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -40,21 +38,6 @@ const ShowFilterInfo = () => (
   </View>
 );
 
-const ActiveTabScreen = () => (
-  <View style={styles.fullTabScreen}>
-    <ShowFilterInfo />
-    <View style={styles.centeredContent}>
-      <Text style={styles.noTaskText}>Welcom to TailorMate</Text>
-      <TouchableOpacity
-        style={styles.manageButton}
-        onPress={() => alert('Add new order')}
-      >
-        <Text style={styles.addOrderText}>Add an Order</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
-
 const TabScreen = ({ label }) => (
   <View style={styles.fullTabScreen}>
     <ShowFilterInfo />
@@ -63,16 +46,12 @@ const TabScreen = ({ label }) => (
     </View>
   </View>
 );
-
-
 const OrdersScreen = () => {
   const navigation = useNavigation();
- 
-  
-
+  const [showMenu, setShowMenu] = useState(false); 
   return (
     <SafeAreaView style={styles.container}>
-      <MainHeader title={STRINGS.orderList} onAddPress={() => navigation.navigate('AddOrderScreen')}/>
+      <MainHeader title={STRINGS.orderList}  />
       <View style={styles.trialBanner}>
         <Text style={styles.trialBannerText}>
           Your Trial Plan expires in 29 days!
@@ -96,7 +75,18 @@ const OrdersScreen = () => {
             options={{ tabBarLabel: tab.label }}
             children={() =>
               tab.name === 'Active' ? (
-                <ActiveTabScreen />
+                <View style={styles.fullTabScreen}>
+                  <ShowFilterInfo />
+                  <View style={styles.centeredContent}>
+                    <Text style={styles.noTaskText}>Welcome to TailorMate</Text>
+                    <TouchableOpacity
+                      style={styles.manageButton}
+                      onPress={() => setShowMenu(!showMenu)} 
+                    >
+                      <Text style={styles.addOrderText}>Add an Order</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               ) : (
                 <TabScreen label={tab.labelText} />
               )
@@ -104,31 +94,8 @@ const OrdersScreen = () => {
           />
         ))}
       </Tab.Navigator>
+      {showMenu && <AddOrderOption onClose={() => setShowMenu(false)} />}
     </SafeAreaView>
   );
 };
-
 export default OrdersScreen;
-
-const headerMenuStyles = StyleSheet.create({
-  dropdownMenu: {
-    position: 'absolute',
-    top: 90, 
-    right: 15,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    elevation: 5,
-    zIndex: 1000,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  menuItem: {
-    paddingVertical: 10,
-  },
-  menuText: {
-    fontSize: 16,
-  },
-});
