@@ -8,7 +8,6 @@ const matter = {
     l: 16,
     xl: 50,
   },
- 
   fontSize: {
     s:13,
     sm: 16,

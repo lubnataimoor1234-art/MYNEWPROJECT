@@ -304,7 +304,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.BACKGROUND,
     alignItems: "center",
-    
     padding: moderateScale(10),
   },
   iconContainer: {
