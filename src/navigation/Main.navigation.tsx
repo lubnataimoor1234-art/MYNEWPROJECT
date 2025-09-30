@@ -190,6 +190,7 @@
 // };
 
 // export default MainTabs;
+
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
@@ -203,7 +204,7 @@ import {
 import Home from "../screens/Home/Home";
 import Profile from "../screens/Profile/Profile";
 import Bookings from "../screens/Bookings/BookingsScreen";
-import ChatScreen from "../screens/Wallet/ChatScreen";
+import ChatScreen from "../screens/Chat/ChatScreen";
 import { HomeTab } from "../assets/pngs";
 import Colors from "../utils/colors.utils";
 
