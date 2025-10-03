@@ -1,3 +1,86 @@
+// // src/screens/Service/ServiceProviderScreen.tsx
+// import React from "react";
+// import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+// import { Car, Bike } from "lucide-react-native";
+// import Colors from "../../utils/colors.utils";
+
+// const ServiceProviderScreen = () => {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>What seems to be the trouble?</Text>
+//       <Text style={styles.subtitle}>Select your vehicle type</Text>
+
+//       {/* Car */}
+//       <TouchableOpacity style={styles.option}>
+//         <Car size={24} color={Colors.PRIMARY} />
+//         <Text style={styles.optionText}>Car</Text>
+//       </TouchableOpacity>
+
+//       {/* Motorcycle */}
+//       <TouchableOpacity style={styles.option}>
+//         <Bike size={24} color={Colors.PRIMARY} />
+//         <Text style={styles.optionText}>Motorcycle</Text>
+//       </TouchableOpacity>
+
+//       {/* Continue Button */}
+//       <TouchableOpacity style={styles.continueBtn}>
+//         <Text style={styles.continueText}>Continue</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: Colors.WHITE,
+//     padding: 20,
+//     justifyContent: "center",
+//   },
+//   title: {
+//     fontSize: 20,
+//     fontWeight: "700",
+//     color: Colors.TEXT,
+//     marginBottom: 10,
+//     textAlign: "center",
+//   },
+//   subtitle: {
+//     fontSize: 14,
+//     color: Colors.DARK_GRAY,
+//     marginBottom: 30,
+//     textAlign: "center",
+//   },
+//   option: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     padding: 15,
+//     borderRadius: 12,
+//     backgroundColor: Colors.BORDER_GREY,
+//     marginBottom: 15,
+//   },
+//   optionText: {
+//     fontSize: 16,
+//     fontWeight: "600",
+//     marginLeft: 12,
+//     color: Colors.TEXT,
+//   },
+//   continueBtn: {
+//     marginTop: 20,
+//     backgroundColor: Colors.PRIMARY,
+//     padding: 16,
+//     borderRadius: 12,
+//     alignItems: "center",
+//   },
+//   continueText: {
+//     color: Colors.WHITE,
+//     fontSize: 16,
+//     fontWeight: "600",
+//   },
+// });
+
+// export default ServiceProviderScreen;
+
+
 
 // import React, { useState, useLayoutEffect } from 'react';
 // import { useNavigation } from '@react-navigation/native';
@@ -175,9 +258,7 @@
 //   },
 // });
 
-
 import React from "react";
-
 import {
   View,
   Text,
@@ -185,103 +266,97 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, DrawerActions } from "@react-navigation/native";
 import Colors from "../../utils/colors.utils";
-
-
 import {
-  Bell,
-  MapPin,
   Menu,
   UserCircle2,
   Car,
   Wrench,
   Bike,
   Droplets,
-  ShowerHead,
   Zap,
+  ArrowLeft,
+  Truck,
 } from "lucide-react-native";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { DrawerParamList } from "../../navigation/MainDrawer";
-import { DrawerActions } from "@react-navigation/native";
+
+
 const Home = () => {
-  
-  const navigation = useNavigation<DrawerNavigationProp<DrawerParamList>>();
+  const navigation = useNavigation();
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-          <Menu size={28} color={Colors.PRIMARY} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Home</Text>
-        <TouchableOpacity>
-          <UserCircle2 size={24} color={Colors.PRIMARY} />
-        </TouchableOpacity>
-      </View>
-      {/* <View style={styles.header}>
-        <TouchableOpacity>
-          <Menu size={28} color={Colors.PRIMARY} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Home</Text>
-        <TouchableOpacity>
-          <UserCircle2 size={28} color={Colors.PRIMARY} />
-        </TouchableOpacity>
-      </View> */}
+    <View style={styles.wrapper}>
+      <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
+        {/* Header */}
+         <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+            <ArrowLeft size={28} color={Colors.PRIMARY} />
+          </TouchableOpacity>
+           <Text style={styles.headerTitle}>FixMyRide</Text>
+          <TouchableOpacity>
+            <UserCircle2 size={24} color={Colors.PRIMARY} />
+          </TouchableOpacity>
+        </View> 
 
+        {/* Book Ride */}
 
-      <TouchableOpacity style={styles.bookRideCard}>
-        <Text style={styles.bookRideText}>Book a ride</Text>
+        <TouchableOpacity style={styles.bookRideCard}>
+          
+          <Text style={styles.bookRideText}>Book a ride</Text>
           <Car size={60} color={Colors.WHITE} strokeWidth={1.5} />
-      </TouchableOpacity>
+        </TouchableOpacity>
+<Text style={{ fontSize: 15,color: Colors.TEXT, marginBottom: 20}}>Select your vehical type</Text>
 
- 
-      <View style={styles.servicesContainer}>
-        <TouchableOpacity style={styles.serviceBox}>
-  <View style={styles.iconRow}>
-    <Car size={60} color={Colors.PRIMARY} strokeWidth={1.5}  />
-    <Wrench size={30} color={Colors.PRIMARY} strokeWidth={1.5} />
-  </View>
+        {/* Services */}
+
+        <View style={styles.servicesContainer}>
+          <TouchableOpacity  style={styles.serviceBox}
+  onPress={() => navigation.navigate("WhatsWrongScreen" as never)} >
+  <Car size={40} color={Colors.PRIMARY} strokeWidth={1.5} />
   <Text style={styles.serviceText}>Car Repair</Text>
 </TouchableOpacity>
-{/* <TouchableOpacity style={styles.serviceBox}>
-  <View style={{ width: 50, height: 50 }}> 
-    <Car size={60} color={Colors.PRIMARY} />
-    <Wrench
-      size={20}
-      color={Colors.PRIMARY}
-      style={{ position: "absolute", bottom: -15, right: -6 }}
-    />
-  </View>
-  <Text style={styles.serviceText}>Car Repair</Text>
-</TouchableOpacity> */}
-        <TouchableOpacity style={styles.serviceBox}>
-          <Bike size={60} color={Colors.PRIMARY} strokeWidth={1.5} />
-          <Text style={styles.serviceText}>Bike Repair</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.serviceBox}>
-           <Droplets size={30} color={Colors.PRIMARY}  strokeWidth={1.5} />
-          <Car size={60} color={Colors.PRIMARY} strokeWidth={1.5}  />
          
-          <Text style={styles.serviceText}>Car Wash</Text>
-        </TouchableOpacity>
+          <TouchableOpacity 
+  style={styles.serviceBox}
+  onPress={() => navigation.navigate("bikeHome" as never)}  >
+  <Bike size={40} color={Colors.PRIMARY} strokeWidth={1.5} />
+  <Text style={styles.serviceText}>Bike Repair</Text>
+</TouchableOpacity>
+            
+       
 
-        <TouchableOpacity style={styles.serviceBox}>
-          <Zap size={60} color={Colors.PRIMARY}  strokeWidth={1.5}/>
-          <Text style={styles.serviceText}>Emergency Help</Text>
+          <TouchableOpacity style={styles.serviceBox}>
+            <Truck size={40} color={Colors.PRIMARY} strokeWidth={1.5} />
+            <Text style={styles.serviceText}>Pickup Trucks</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.serviceBox}>
+            <Zap size={30} color={Colors.PRIMARY} strokeWidth={1.5} />
+            <Text style={styles.serviceText}>Emergency Help</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+
+      {/* Continue Button at Bottom */}
+      <View style={styles.bottomButtonContainer}> 
+        <TouchableOpacity style={styles.continueButton}>
+  
+          <Text style={styles.continueText}>Continue</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     backgroundColor: Colors.BACKGROUND,
+  },
+  container: {
+    flex: 1,
     paddingHorizontal: 16,
     paddingTop: 50,
   },
@@ -289,12 +364,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 30,
+    marginBottom: 10,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: Colors.TEXT,
+    color: Colors.PRIMARY,
   },
   bookRideCard: {
     backgroundColor: Colors.PRIMARY,
@@ -311,32 +386,45 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
   },
   servicesContainer: {
-    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+      flexDirection: "column",
   },
   serviceBox: {
-    width: "48%",
+    width: "100%",
     backgroundColor: Colors.WHITE,
     borderRadius: 12,
-    paddingVertical: 20,
+    paddingVertical: 8,
     alignItems: "center",
+     flexDirection: "row",      
     marginBottom: 15,
     borderWidth: 1,
     borderColor: Colors.BORDER_GREY,
     elevation: 2,
   },
   serviceText: {
+    marginLeft:12,
     marginTop: 8,
     fontSize: 14,
     fontWeight: "500",
     color: Colors.TEXT,
   },
-  iconRow: {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
-  gap:1, // React Native 0.71+ me chalega
-},
-
+   backButton: { padding: 10 },
+  bottomButtonContainer: {
+    position: "absolute",
+    bottom: 20,
+    left: 16,
+    right: 16,
+  },
+  continueButton: {
+    backgroundColor: Colors.PRIMARY,
+    paddingVertical: 15,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  continueText: {
+    color: Colors.WHITE,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
 });
+ 

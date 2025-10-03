@@ -7,7 +7,8 @@ const Colors = {
     BORDER_GREY: '#DFDFDF', // For Borders
     DARK_GRAY: '#868A9A',
     YELLOW : '#FBA709',
-    RED : '#FE2121',
+    RED : '#e0490dff',
+    Sky: '#61bde2ff'
 
 };
 
