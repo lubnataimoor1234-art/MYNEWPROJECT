@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -43,11 +44,10 @@ const mechanicsData = [
 
 const MechanicsBidScreen = () => {
   const navigation = useNavigation();
+   const [search, setSearch] = useState("");
 
   const renderMechanic = ({ item }: any) => (
     <View style={styles.card}>
-      
-      
       {/* Mechanic Info */}
       <View style={styles.row}>
         <Image source={{ uri: item.image }} style={styles.avatar} />
@@ -86,18 +86,12 @@ const MechanicsBidScreen = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <ArrowLeft size={22} color={Colors.TEXT} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Mechanic Bids</Text>
-        <View style={{ width: 22 }} />
-      </View>
+       <CustomHeader title = "Machanic Bid" 
+       showSearch 
+       onSearchChange={setSearch} 
+       showProfile />
 
-      {/* Subheading */}
-      <Text style={styles.subTitle}>
-        4 mechanics responded · 2 accepted your $50 budget
-      </Text>
+        <Text style={styles.text}>Search query: {search}</Text>
 
       {/* Budget Info */}
       <View style={styles.budgetCard}>
@@ -119,25 +113,20 @@ const MechanicsBidScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.WHITE, padding: 40 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: "600",
+  container: { flex: 1, backgroundColor: Colors.WHITE,
+     //padding: 40 
+     },
+  text: {
+    marginTop: 20,
+    textAlign: "center",
+    fontSize: 16,
     color: Colors.TEXT,
+    marginBottom:10,
+     fontWeight: "800",
   },
-  subTitle: {
-    fontSize: 14,
-    color: Colors.TEXT,
-    marginBottom: 15,
-  },
+  
   budgetCard: {
-    backgroundColor: "#E8F1FF",
+    backgroundColor: Colors.YELLOW,
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
@@ -149,7 +138,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 12,
     marginBottom: 15,
-    shadowColor: "#000",
+    shadowColor: Colors.TEXT,
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,

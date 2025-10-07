@@ -1,93 +1,159 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { ArrowLeft, MapPin, User } from "lucide-react-native";
 
-import Colors from "./../utils/colors.utils";
-interface Props {
-  title: string;
-  subtitle?: string;
-  location?: string;
-  onBack?: () => void;
-  onProfile?: () => void;
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import { ArrowLeft, User, Search } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Colors from "../utils/colors.utils";
+import matter from "../utils/matter.utils";
+import strings from "../utils/strings.utils";
+import { moderateScale, verticalScale } from "react-native-size-matters";
+
+interface AppHeaderProps {
+  title?: string;
+ subtitle?: string;
+  showBack?: boolean;
+  showProfile?: boolean;
+  showSearch?: boolean;
+  onSearchChange?: (text: string) => void;
 }
 
-const CustomGreenHeader: React.FC<Props> = ({
-  title,
-  subtitle,
-  location,
-  onBack,
-  onProfile,
+const CustomHeader: React.FC<AppHeaderProps> = ({
+  title = "",
+  subtitle ="",
+  showBack = true,
+  showProfile = true,
+  showSearch = false,
+  onSearchChange,
 }) => {
-  return (
-    <View style={styles.container}>
-      {/* Top Row: Back + Location + Profile */}
-      <View style={styles.topRow}>
-        {onBack && (
-          <TouchableOpacity onPress={onBack} style={styles.iconBtn}>
-            <ArrowLeft size={24} color={Colors.WHITE} />
-          </TouchableOpacity>
-        )}
+  const navigation = useNavigation<any>();
 
-        {location && (
-          <View style={styles.locationContainer}>
-            <MapPin size={18} color={Colors.WHITE} />
-            <Text style={styles.locationText}>{location}</Text>
+  const handleProfilePress = () => {
+    navigation.navigate("Profile"); // navigate to Profile screen
+  };
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.headerBackground}>
+        {/* === Top Row: Arrow + Title + Profile === */}
+        <View style={styles.topRow}>
+          {/* Back Arrow */}
+          {showBack ? (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.backButton}
+            >
+              <ArrowLeft size={24} color={Colors.WHITE} />
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.placeholder} />
+          )}
+
+          {/* Title in Center */}
+          <Text style={styles.title}>{title}</Text>
+        {subtitle ? (
+    <Text style={styles.subtitle}>{subtitle}</Text>
+  ) : null}
+          {/* Profile Icon on Right */}
+          {showProfile ? (
+            <TouchableOpacity onPress={handleProfilePress} style={styles.profileIcon}>
+              <User size={20} color={Colors.PRIMARY} />
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.placeholder} />
+          )}
+        </View>
+
+        {/* === Search Bar at Bottom of Header === */}
+        {showSearch && (
+          <View style={styles.searchContainer}>
+            <Search size={18} color={Colors.DARK_GRAY} />
+            <TextInput
+              placeholder="Search..."
+              placeholderTextColor={Colors.DARK_GRAY}
+              style={styles.searchInput}
+              onChangeText={onSearchChange}
+            />
+            
           </View>
         )}
-
-        {onProfile && (
-          <TouchableOpacity onPress={onProfile} style={styles.iconBtn}>
-            <User size={24} color={Colors.WHITE} />
-          </TouchableOpacity>
-        )}
       </View>
-
-      {/* Title + Subtitle */}
-      <Text style={styles.title}>{title}</Text>
-      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-    </View>
+    </SafeAreaView>
   );
 };
 
-export default CustomGreenHeader;
+export default CustomHeader;
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     backgroundColor: Colors.PRIMARY,
-    paddingHorizontal: 16,
-    paddingTop: 45, // space for status bar
-    paddingBottom: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+     borderBottomLeftRadius: moderateScale(40),
+    borderBottomRightRadius: moderateScale(40),
+
+  },
+  headerBackground: {
+    backgroundColor: Colors.PRIMARY,
+    height: verticalScale(100),
+    borderBottomLeftRadius: moderateScale(40),
+    borderBottomRightRadius: moderateScale(40),
+    overflow: "hidden",
+    paddingHorizontal: matter.spacing.l,
+    justifyContent: "space-between",
+    paddingBottom: verticalScale(10),
   },
   topRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 12,
+    marginTop: verticalScale(10),
   },
-  iconBtn: {
-    padding: 6,
-  },
-  locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-    marginHorizontal: 12,
-  },
-  locationText: {
-    color: Colors.WHITE,
-    marginLeft: 6,
-    fontSize: 14,
+  backButton: {
+    padding: matter.spacing.s,
   },
   title: {
-    fontSize: 22,
-    fontWeight: "700",
+    flex: 1,
+    textAlign: "center",
     color: Colors.WHITE,
+    fontSize: matter.fontSize.lg,
+    fontWeight: "700",
   },
   subtitle: {
-    fontSize: 14,
-    color: Colors.BACKGROUND,
-    marginTop: 4,
+  color: Colors.WHITE,
+  fontSize: matter.fontSize.sm,
+  marginTop: 4,
+  marginLeft: matter.spacing.l + 6,
+  textAlign: "left",
+  opacity: 0.9,
+},
+  
+  profileIcon: {
+    backgroundColor: Colors.WHITE,
+    borderRadius: 20,
+    padding: matter.spacing.s,
+  },
+  placeholder: {
+    width: 40,
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: Colors.WHITE,
+    borderRadius: matter.radius.lg,
+    paddingHorizontal: matter.spacing.m,
+    height: verticalScale(30),
+    marginTop: verticalScale(20),
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: matter.fontSize.sm,
+    paddingVertical: 8,
+    color: Colors.TEXT,
+    marginLeft: matter.spacing.s,
   },
 });

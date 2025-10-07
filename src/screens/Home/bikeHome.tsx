@@ -4,12 +4,17 @@ import { Search, RefreshCcw, HelpCircle } from "lucide-react-native";
 import Colors from "../../utils/colors.utils";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "lucide-react-native";
+import CustomHeader from "../../components/CustomHeader";
+import matter from "../../utils/matter.utils";
+import strings from "../../utils/strings.utils";
 const IntroScreen = () => {
   const navigation = useNavigation();
   
 
   return (
     <View style={styles.container}>  
+      <CustomHeader title=""  />
+   
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <ArrowLeft size={24} color={Colors.WHITE} />
         </TouchableOpacity>
@@ -19,7 +24,7 @@ const IntroScreen = () => {
         resizeMode="cover"
       /> */}
 
-      {/* Title */}
+
       <Text style={styles.title}>On-Demand Bike Mechanics</Text>
       <Text style={styles.subtitle}>
         Bike broke down? Set your budget. Mechanics bid. You choose the best deal!
@@ -68,10 +73,9 @@ const IntroScreen = () => {
       {/* Get Started Button */}
       <TouchableOpacity style={styles.startButton}>
         <Text style={styles.startButtonText}>Get Started</Text>
+        
       </TouchableOpacity>
-
-      {/* Skip */}
-      <Text style={styles.skip}>Skip</Text>
+       
     </View>
   );
 };
@@ -80,8 +84,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.WHITE,
-    paddingHorizontal: 20,
-    paddingTop: 40,
+    //paddingHorizontal: 20,
+    //paddingTop: 40,
   },
   image: {
     width: 200,
@@ -108,12 +112,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   optionBox: {
+    width: "100%",
+    backgroundColor: Colors.WHITE,
+    borderRadius: matter.radius.lg,
+    paddingVertical: matter.padding.buttonV,
+    paddingHorizontal: matter.padding.buttonH,
     flexDirection: "row",
-    backgroundColor: Colors.BORDER_GREY,
-    padding: 15,
-    borderRadius: 12,
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: matter.spacing.m,
+    borderWidth: 1,
+    borderColor: Colors.BORDER_GREY, 
+    elevation: 2,
   },
   optionTextBox: {
     marginLeft: 12,
@@ -142,9 +151,9 @@ const styles = StyleSheet.create({
   },
   skip: {
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 15,
     fontSize: 14,
-    color: Colors.WHITE,
+    color: Colors.DARK_GRAY,
   },
 });
 

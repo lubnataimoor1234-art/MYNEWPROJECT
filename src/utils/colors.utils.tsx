@@ -8,8 +8,6 @@ const Colors = {
     DARK_GRAY: '#868A9A',
     YELLOW : '#FBA709',
     RED : '#e0490dff',
-    Sky: '#61bde2ff'
-
 };
 
 export default Colors;
