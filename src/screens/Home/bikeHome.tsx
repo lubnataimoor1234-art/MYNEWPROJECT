@@ -22,7 +22,9 @@ const IntroScreen = () => {
           resizeMode="contain"
         />
       </View>
-      <Text style={styles.title}>On-Demand Bike Mechanics</Text>
+      <Text style={styles.title}>On-Demand Bike</Text>
+         <Text style={styles.title2}>Mechanics </Text>
+    
       <Text style={styles.subtitle}>
         Bike broke down? Set your budget. Mechanics bid. You choose the best deal!
       </Text>
@@ -83,9 +85,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
   },
   imageContainer: {
+    
     alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 20,
+    justifyContent: "flex-start",
+  backgroundColor: Colors.DARK_GRAY
     
   },
   image: {
@@ -96,13 +99,22 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 22,
+    marginTop:15,
+    fontSize: 25,
     fontWeight: "700",
     color: Colors.TEXT,
     textAlign: "center",
-    marginBottom: 5,
+  },
+  title2:
+   {
+    fontSize: 25,
+    fontWeight: "700",
+    color: Colors.TEXT,
+    textAlign: "center",
+    marginBottom: 10,
 
-  },backButton: { padding: 10 },
+  },
+  backButton: { padding: 10 },
   subtitle: {
     fontSize: 14,
     color: Colors.DARK_GRAY,
@@ -121,18 +133,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.BORDER_GREY,
     marginBottom: 12,
     elevation: 2,
-    // width: "80%",
-    // backgroundColor: Colors.WHITE,
-    // borderRadius: matter.radius.lg,
-    // paddingVertical: matter.padding.buttonV,
-    // paddingHorizontal: matter.padding.buttonH,
-    // flexDirection: "row",
-    // alignItems: "center",
-    // marginBottom: matter.spacing.m,
-    // borderWidth: 1,
-    // borderColor: Colors.BORDER_GREY, 
-    // elevation: 2,
-
   },
   optionTextBox: {
     marginLeft: 12,

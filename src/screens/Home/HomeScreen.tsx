@@ -154,19 +154,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.WHITE,
-    //paddingHorizontal: matter.padding.screen,
-    //paddingTop: 300,
+   
   },
-  // header: {
-  //   top: 50,
-  //   left: matter.spacing.m,
-  //   position: "absolute",
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  // },
   title: {
     fontSize: matter.fontSize.lg,
-    fontWeight: "700",
+    fontWeight: "900",
     marginBottom: matter.spacing.s,
     color: Colors.TEXT,
     textAlign: "center",
