@@ -23,7 +23,7 @@ const EditProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title="Edit Profile" showBack />
+      <CustomHeader title="Edit Profile" showBack  showProfile={false}/>
 
       <ScrollView
         showsVerticalScrollIndicator={false}

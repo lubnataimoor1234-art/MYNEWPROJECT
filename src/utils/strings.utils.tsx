@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Wrench, Battery, Fuel, Settings, Bike } from "lucide-react-native";
+import { Wrench, Truck,Battery, Fuel, Settings, Bike } from "lucide-react-native";
 import Colors from "./colors.utils";
 
 const strings = {
@@ -34,55 +34,54 @@ const strings = {
     searchPlaceholder: "Search",
   },
 
-  bikeTrouble: {
-    locationLabel: "Your Location",
-    locationText: "123 Main Street, Downtown",
-    title: "Select vehicle which is in trouble?",
-    subtitle: "Get a mechanic in minutes",
-    bannerTitle: "💰 Set Your Price, Get Bids!",
-    bannerSubtitle:
-      "Choose service → Set your budget → Mechanics accept or counter-bid → You pick the best deal!",
-    sectionTitle: "Select a Service",
+  bikeRepair: {
+    headerTitle: "Bike Repair",
+    bannerTitle: "Bike Trouble?",
+    bannerSubtitle: "Choose the service you need — we'll send a mechanic right away!",
+    learnMore: "Learn More →",
+    sectionTitle: "Available Services",
 
     services: [
       {
-        icon: <Wrench size={22} color={Colors.PRIMARY} />,
         title: "Bike Puncture",
         desc: "Flat tire repair or tube replacement",
-        route: "PunctureScreen",
+        icon: <Wrench size={28} color={Colors.PRIMARY} />,
+        route: "RequestMechanicScreen",
       },
       {
-        icon: <Battery size={22} color={Colors.PRIMARY} />,
-        title: "Battery Issues",
+        title: "Battery Issue",
         desc: "Jump start or battery replacement",
-        route: "BatteryScreen",
+        icon: <Battery size={28} color={Colors.PRIMARY} />,
+       route: "RequestMechanicScreen ",
       },
       {
-        icon: <Wrench size={22} color={Colors.PRIMARY} />,
         title: "Engine Breakdown",
-        desc: "On-site engine diagnosis and repair",
-        route: "EngineScreen",
+        desc: "Engine diagnostics and minor fixes",
+        icon: <Truck size={28} color={Colors.PRIMARY} />,
+       route: "RequestMechanicScreen ",
+      
       },
       {
-        icon: <Fuel size={22} color={Colors.PRIMARY} />,
         title: "Fuel Delivery",
-        desc: "Emergency fuel delivery service",
-        route: "FuelScreen",
+        desc: "Emergency fuel delivered to your location",
+        icon: <Fuel size={28} color={Colors.PRIMARY} />,
+           route: "RequestMechanicScreen ",
       },
       {
-        icon: <Settings size={22} color={Colors.PRIMARY} />,
         title: "General Service",
-        desc: "Oil change, chain service, general maintenance",
-        route: "GeneralServiceScreen",
+        desc: "Oil change, brake check, chain lube",
+        icon: <Settings size={28} color={Colors.PRIMARY} />,
+       route: "RequestMechanicScreen ",
       },
       {
-        icon: <Bike size={22} color={Colors.PRIMARY} />,
         title: "Bike Towing",
-        desc: "Towing to nearest garage",
-        route: "TowingScreen",
+        desc: "Get your bike towed to nearest garage",
+        icon: <Bike size={28} color={Colors.PRIMARY} />,
+           route: "RequestMechanicScreen ",
       },
     ],
   },
 };
+
 
 export default strings;

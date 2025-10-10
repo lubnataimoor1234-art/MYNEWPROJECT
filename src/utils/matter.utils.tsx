@@ -6,9 +6,10 @@ const matter = {
     xl: 50,
   },
   fontSize: {
-    sm: 14,
-    md: 16,
-    lg: 22,
+    s:13,
+    sm: 16,
+    md: 20,
+    lg: 25,
   },
   radius: {
     sm: 8,

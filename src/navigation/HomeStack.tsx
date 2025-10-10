@@ -27,7 +27,7 @@ import ServiceProviderScreen from "../screens/Home/ServiceProviderScreen";
 import BikeRepairScreen from "../screens/Home/BikeRepairScreen";
 import MechanicBidScreen from "../screens/Bid/MechanicBidScreen";
 import bikeHome from "../screens/Home/bikeHome";
-import bikePuncture from "../screens/Home/bikePuncture";
+import RequestMechanicScreen from "../screens/Home/RequestMechanicScreen";
 export type HomeStackParamList = {
   HomeScreen: undefined;
   MapScreen: undefined;
@@ -35,7 +35,7 @@ export type HomeStackParamList = {
   BikeRepairScreen: undefined;
   MechanicBidScreen:undefined;
   bikeHome: undefined;
-  bikePuncture:undefined;
+  RequestMechanicScreen :undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -49,7 +49,7 @@ const HomeStack = () => {
       <Stack.Screen name="BikeRepairScreen" component={BikeRepairScreen} />
       <Stack.Screen name="MechanicBidScreen" component={MechanicBidScreen} />
       <Stack.Screen name="bikeHome" component={bikeHome} />
-      <Stack.Screen name="bikePuncture" component={bikePuncture} />
+      <Stack.Screen name="RequestMechanicScreen" component={RequestMechanicScreen} />
     </Stack.Navigator>
   );
 };

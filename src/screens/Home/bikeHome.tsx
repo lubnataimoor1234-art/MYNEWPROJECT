@@ -4,7 +4,6 @@ import { Search, RefreshCcw, HelpCircle } from "lucide-react-native";
 import Colors from "../../utils/colors.utils";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "lucide-react-native";
-import CustomHeader from "../../components/CustomHeader";
 import matter from "../../utils/matter.utils";
 import strings from "../../utils/strings.utils";
 const IntroScreen = () => {
@@ -12,19 +11,17 @@ const IntroScreen = () => {
   
 
   return (
-    <View style={styles.container}>  
-      <CustomHeader title=""  />
-   
+    <View style={styles.container}> 
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <ArrowLeft size={24} color={Colors.WHITE} />
         </TouchableOpacity>
-      {/* <Image
-        source={require("../assets/png/image.png")} 
-        style={styles.image}
-        resizeMode="cover"
-      /> */}
-
-
+         <View style={styles.imageContainer}>
+        <Image
+          source={require("../../assets/pngs/image1.png")} 
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
       <Text style={styles.title}>On-Demand Bike Mechanics</Text>
       <Text style={styles.subtitle}>
         Bike broke down? Set your budget. Mechanics bid. You choose the best deal!
@@ -84,19 +81,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.WHITE,
-    //paddingHorizontal: 20,
-    //paddingTop: 40,
+  },
+  imageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 20,
+    
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300
+    //borderRadius: 10,
+    //marginBottom: 20,
   },
-//   image: {
-//     width: "100%",
-//     height: 180,
-//     borderRadius: 10,
-//     marginBottom: 20,
-//   },
+
   title: {
     fontSize: 22,
     fontWeight: "700",
@@ -107,22 +105,34 @@ const styles = StyleSheet.create({
   },backButton: { padding: 10 },
   subtitle: {
     fontSize: 14,
-    color: Colors.BORDER_GREY,
+    color: Colors.DARK_GRAY,
     textAlign: "center",
     marginBottom: 20,
   },
   optionBox: {
-    width: "100%",
-    backgroundColor: Colors.WHITE,
-    borderRadius: matter.radius.lg,
-    paddingVertical: matter.padding.buttonV,
-    paddingHorizontal: matter.padding.buttonH,
-    flexDirection: "row",
+     flexDirection: "row",
     alignItems: "center",
-    marginBottom: matter.spacing.m,
+    backgroundColor: Colors.WHITE,
+    paddingVertical: 12,
+    paddingHorizontal: matter.spacing.m,
+    marginHorizontal: matter.spacing.m,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: Colors.BORDER_GREY, 
+    borderColor: Colors.BORDER_GREY,
+    marginBottom: 12,
     elevation: 2,
+    // width: "80%",
+    // backgroundColor: Colors.WHITE,
+    // borderRadius: matter.radius.lg,
+    // paddingVertical: matter.padding.buttonV,
+    // paddingHorizontal: matter.padding.buttonH,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // marginBottom: matter.spacing.m,
+    // borderWidth: 1,
+    // borderColor: Colors.BORDER_GREY, 
+    // elevation: 2,
+
   },
   optionTextBox: {
     marginLeft: 12,

@@ -197,11 +197,10 @@ const [search, setSearch] = useState("");
         showProfile
         showBack
       />
-   <Text style={styles.title}>{strings.bikeTrouble.title}</Text>
-          <Text style={styles.subtitle}>{strings.bikeTrouble.subtitle}</Text>
-      <ScrollView contentContainerStyle={{ paddingBottom: matter.spacing.l }}>
+          <Text style={styles.title}>{strings.bikeRepair.headerTitle}</Text>
+          <Text style={styles.subtitle}>{strings.bikeRepair.sectionTitle}</Text>
+          <ScrollView contentContainerStyle={{ paddingBottom: matter.spacing.l }}>
 
-        {/* White Card Container */}
         <View style={styles.cardContainer}>
       
           <View style={styles.servicesContainer}>
@@ -221,33 +220,42 @@ const [search, setSearch] = useState("");
               <Text style={styles.serviceText}>🏍️ Bike Repair</Text>
             </TouchableOpacity>
   
-            <TouchableOpacity style={styles.serviceBox}>
+            <TouchableOpacity  style={styles.serviceBox}
+              onPress={() => navigation.navigate("bikeHome" as never)}
+            >
               {/* <Truck size={20} color={Colors.PRIMARY} /> */}
               <Text style={styles.serviceText}> 🚚 Pickup Trucks</Text>
             </TouchableOpacity>
 
-            <View style={styles.servicesContainer}>
-  <TouchableOpacity style={styles.serviceBox}>
+           <TouchableOpacity  style={styles.serviceBox}
+              onPress={() => navigation.navigate("bikeHome" as never)}
+            >
     {/* <Bike size={24} color={Colors.PRIMARY} /> */}
     <Text style={styles.serviceText}>🛵 Scooter</Text>
   </TouchableOpacity>
 
-  <TouchableOpacity style={styles.serviceBox}>
+  <TouchableOpacity  style={styles.serviceBox}
+              onPress={() => navigation.navigate("bikeHome" as never)}
+            >
     {/* <Truck size={24} color={Colors.PRIMARY} /> */}
     <Text style={styles.serviceText}>🚛 Lorry</Text>
   </TouchableOpacity>
 
-  <TouchableOpacity style={styles.serviceBox}>
+  <TouchableOpacity  style={styles.serviceBox}
+              onPress={() => navigation.navigate("bikeHome" as never)}
+            >
     {/* <MoveRight size={24} color={Colors.PRIMARY} /> */}
     <Text style={styles.serviceText}>🛺 Rickshaw</Text>
   </TouchableOpacity>
 
-  <TouchableOpacity style={styles.serviceBox}>
+  <TouchableOpacity  style={styles.serviceBox}
+              onPress={() => navigation.navigate("bikeHome" as never)}
+            >
     {/* <Car size={24} color={Colors.PRIMARY} /> */}
     <Text style={styles.serviceText}>🚘 Mini Car</Text>
   </TouchableOpacity>
   </View>
-          </View>
+        
         </View>
       </ScrollView>
     </View>
@@ -265,17 +273,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: matter.fontSize.lg,
-    fontWeight: "700",
+    fontWeight: "900",
     color: Colors.WHITE,
     textAlign: "center",
     marginBottom: matter.spacing.s,
-   
+   paddingHorizontal: matter.padding.screen,
   },
   subtitle: {
     fontSize: matter.fontSize.sm,
-    color: "rgba(255,255,255,0.9)",
+    color: Colors.WHITE,
     textAlign: "center",
    marginBottom: matter.spacing.l,
+   paddingHorizontal: matter.padding.screen,
   },
   cardContainer: {
     backgroundColor: Colors.WHITE,

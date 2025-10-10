@@ -309,7 +309,7 @@ const ProfileScreen = () => {
             }}
             style={styles.profileImage}
           />
-          <Text style={styles.name}>Gulam Nabi</Text>
+          <Text style={styles.name}>James</Text>
           <Text style={styles.role}>Mechanic Partner</Text>
 
           <View style={styles.infoContainer}>

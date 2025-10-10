@@ -42,13 +42,10 @@ const [search, setSearch] = useState("");
 
   return (
     <View style={styles.container}>
-    
    <CustomHeader title = " HISTORY " 
        showSearch  
        onSearchChange={setSearch} 
        showProfile />
-
-      {/* Tabs */}
       <View style={styles.tabContainer}>
         <TouchableOpacity
           style={[styles.tabButton, activeTab === "active" && styles.activeTab]}

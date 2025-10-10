@@ -35,55 +35,51 @@ const CustomHeader: React.FC<AppHeaderProps> = ({
   const navigation = useNavigation<any>();
 
   const handleProfilePress = () => {
-    navigation.navigate("Profile"); // navigate to Profile screen
+    navigation.navigate("Profile"); 
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headerBackground}>
-        {/* === Top Row: Arrow + Title + Profile === */}
-        <View style={styles.topRow}>
-          {/* Back Arrow */}
-          {showBack ? (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={styles.backButton}
-            >
-              <ArrowLeft size={24} color={Colors.WHITE} />
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.placeholder} />
-          )}
+  <View style={styles.topRow}>
+  
+    {showBack ? (
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <ArrowLeft size={24} color={Colors.WHITE} />
+      </TouchableOpacity>
+    ) : (
+      <View style={styles.placeholder} />
+    )}
 
-          {/* Title in Center */}
-          <Text style={styles.title}>{title}</Text>
-        {subtitle ? (
-    <Text style={styles.subtitle}>{subtitle}</Text>
-  ) : null}
-          {/* Profile Icon on Right */}
-          {showProfile ? (
-            <TouchableOpacity onPress={handleProfilePress} style={styles.profileIcon}>
-              <User size={20} color={Colors.PRIMARY} />
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.placeholder} />
-          )}
-        </View>
+    {showProfile ? (
+      <TouchableOpacity onPress={handleProfilePress} style={styles.profileIcon}>
+        <User size={20} color={Colors.PRIMARY} />
+      </TouchableOpacity>
+    ) : (
+      <View style={styles.placeholder} />
+    )}
+  </View>
 
-        {/* === Search Bar at Bottom of Header === */}
-        {showSearch && (
-          <View style={styles.searchContainer}>
-            <Search size={18} color={Colors.DARK_GRAY} />
-            <TextInput
-              placeholder="Search..."
-              placeholderTextColor={Colors.DARK_GRAY}
-              style={styles.searchInput}
-              onChangeText={onSearchChange}
-            />
-            
-          </View>
-        )}
-      </View>
+ 
+  <View style={styles.titleContainer}>
+    <Text style={styles.title}>{title}</Text>
+ 
+    {subtitle ? (
+      <Text style={styles.subtitle}>{subtitle}</Text>
+    ) : null}
+  </View>
+  {showSearch && (
+    <View style={styles.searchContainer}>
+      <Search size={18} color={Colors.DARK_GRAY} />
+      <TextInput
+        placeholder="Search..."
+        placeholderTextColor={Colors.DARK_GRAY}
+        style={styles.searchInput}
+        onChangeText={onSearchChange}
+      />
+    </View>
+  )}
+</View>
     </SafeAreaView>
   );
 };
@@ -97,13 +93,25 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: moderateScale(40),
 
   },
+  title: {
+  textAlign: "left",
+  color: Colors.WHITE,
+  fontSize: matter.fontSize.lg,
+  fontWeight: "500",
+  paddingHorizontal: matter.spacing.l,
+
+},
+  titleContainer: {
+  alignItems: "flex-start",
+  marginTop: verticalScale(5),
+  paddingHorizontal: matter.spacing.l,
+},
   headerBackground: {
     backgroundColor: Colors.PRIMARY,
-    height: verticalScale(100),
+    height: verticalScale(110),
     borderBottomLeftRadius: moderateScale(40),
     borderBottomRightRadius: moderateScale(40),
     overflow: "hidden",
-    paddingHorizontal: matter.spacing.l,
     justifyContent: "space-between",
     paddingBottom: verticalScale(10),
   },
@@ -112,48 +120,52 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: verticalScale(10),
+     
   },
   backButton: {
     padding: matter.spacing.s,
-  },
-  title: {
-    flex: 1,
-    textAlign: "center",
-    color: Colors.WHITE,
-    fontSize: matter.fontSize.lg,
-    fontWeight: "700",
+     textAlign: "left",
   },
   subtitle: {
   color: Colors.WHITE,
   fontSize: matter.fontSize.sm,
-  marginTop: 4,
-  marginLeft: matter.spacing.l + 6,
+  marginTop: 8,
+  marginLeft: matter.spacing.s,
   textAlign: "left",
   opacity: 0.9,
+  paddingHorizontal: matter.spacing.l,
+
 },
-  
   profileIcon: {
     backgroundColor: Colors.WHITE,
     borderRadius: 20,
     padding: matter.spacing.s,
+    textAlign: "right",
+      elevation: 2, 
   },
   placeholder: {
-    width: 40,
+    width: 20,
   },
   searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: Colors.WHITE,
-    borderRadius: matter.radius.lg,
-    paddingHorizontal: matter.spacing.m,
-    height: verticalScale(30),
-    marginTop: verticalScale(20),
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: matter.fontSize.sm,
-    paddingVertical: 8,
-    color: Colors.TEXT,
-    marginLeft: matter.spacing.s,
-  },
+  flexDirection: "row",
+  alignItems: "center",
+  backgroundColor: Colors.WHITE,
+  borderRadius: matter.radius.lg,
+  paddingHorizontal: matter.spacing.m,
+  height: verticalScale(30),
+  marginTop: verticalScale(8),
+  marginHorizontal: matter.spacing.l, 
+  shadowColor: Colors.TEXT,
+  shadowOpacity: 0.1,
+  shadowRadius: 3,
+  elevation: 2, 
+},
+
+searchInput: {
+  flex: 1,
+  fontSize: matter.fontSize.sm,
+  color: Colors.TEXT,
+  marginLeft: matter.spacing.s,
+  paddingVertical: 0, 
+},
 });
