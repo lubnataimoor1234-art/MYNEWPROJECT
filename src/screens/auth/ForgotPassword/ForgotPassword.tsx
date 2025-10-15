@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Colors from '@utils/Colors.utils';
-import InputField from '@components/Input/Input';
-import ScreenWrapper from '@components/ScreenWrapper/ScreenWrapper';
+import Colors from '../../../utils/Colors.utils';
+import InputField from '../../../components/InputField';
+import ScreenWrapper from '../../../components/ScreenWrapper';
 import { ArrowLeft } from 'lucide-react-native';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 

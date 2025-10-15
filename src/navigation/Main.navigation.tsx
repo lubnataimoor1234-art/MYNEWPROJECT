@@ -9,13 +9,13 @@ import {
 } from "lucide-react-native";
 
 import HomeStack from "./HomeStack";
-//import Profile from "../screens/Profile/Profile";
-import MechanicBidScreen from "../screens/Bid/MechanicBidScreen";
+import BidStack from "./BidStack";
 import HistoryScreen from "../screens/History/HistoryScreen";
 import { HomeTab } from "../assets/pngs";
 import Colors from "../utils/colors.utils";
 import ProfileStack from "./ProfileStack";
 type MainTabsParamList = {
+  auth:undefined;
   Home: undefined;
   Bid: undefined;
   History: undefined;
@@ -60,7 +60,7 @@ const MainTabs = () => {
 
       <Tab.Screen
         name="Bid"
-        component={MechanicBidScreen}
+        component={BidStack}
         options={{
           tabBarLabel: "Bid",
           tabBarIcon: ({ color, size }) => (
@@ -68,8 +68,6 @@ const MainTabs = () => {
           ),
         }}
       />
-
-
       <Tab.Screen
         name="History"
         component={HistoryScreen}
@@ -80,17 +78,6 @@ const MainTabs = () => {
           ),
         }}
       />
-
-      {/* <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <User color={color} size={size} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
   name="Profile"
   component={ProfileStack}

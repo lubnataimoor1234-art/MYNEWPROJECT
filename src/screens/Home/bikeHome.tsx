@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     
     alignItems: "center",
     justifyContent: "flex-start",
-  backgroundColor: Colors.DARK_GRAY
+  backgroundColor: Colors.DARK_GRAY,
     
   },
   image: {

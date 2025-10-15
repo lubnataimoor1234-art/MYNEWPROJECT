@@ -3,10 +3,10 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Main from "./src/navigation/Main.navigation";
-//import MainDrawer from "./src/navigation/MainDrawer";
+
 import { StatusBar } from "react-native";
 import Colors from "./src/utils/colors.utils";
-
+// import AuthStack from './src/navigation/AuthStack';
 const App = () => {
   return (
     <SafeAreaProvider>
@@ -15,7 +15,7 @@ const App = () => {
           backgroundColor={Colors.PRIMARY}
           barStyle="light-content"
         />
-       
+          {/* <AuthStack /> */}
           <Main />
       </NavigationContainer>
     </SafeAreaProvider>

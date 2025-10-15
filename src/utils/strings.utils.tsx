@@ -22,6 +22,10 @@ const strings = {
   },
 
   history: {
+  
+    quick: "Quick Service",
+    major: "Major Service",
+    regular: "Regular Service",
     active: "Active Bids",
     pending: "Pending Bids",
     completed: "Completed Bids",

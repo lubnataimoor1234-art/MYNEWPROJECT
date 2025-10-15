@@ -1,10 +1,19 @@
+import { moderateScale, verticalScale } from "react-native-size-matters";
+
+
+
+
+
 const matter = {
+  moderateScale,
+  verticalScale,
   spacing: {
     s: 8,
-    m: 16,
-    l: 24,
+    m: 12,
+    l: 16,
     xl: 50,
   },
+ 
   fontSize: {
     s:13,
     sm: 16,

@@ -1,6 +1,6 @@
 
 const Colors = {
-    PRIMARY: '#1C6AFE', // Primary
+    PRIMARY: '#0643ebb9', // Primary
     BACKGROUND: '#F9F9FF', // Screen Background
     WHITE: '#FFFFFF', // White
     TEXT: '#001038', // Text
