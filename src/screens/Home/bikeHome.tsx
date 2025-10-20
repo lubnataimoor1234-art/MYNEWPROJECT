@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Search, RefreshCcw, HelpCircle } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "lucide-react-native";
 import matter from "../../utils/matter.utils";
 import strings from "../../utils/strings.utils";
-const IntroScreen = () => {
+import AppButton from "../../components/AppButton";
+const BikeScreen = () => {
   const navigation = useNavigation();
   
 
@@ -69,11 +70,11 @@ const IntroScreen = () => {
         </View>
       </TouchableOpacity>
 
-      {/* Get Started Button */}
-      <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText}>Get Started</Text>
-        
-      </TouchableOpacity>
+       <AppButton
+        title={strings.bikeHome.btn}
+        onPress={() => navigation.navigate("BikeRepairScreen" as never)}
+        type="primary"
+      />
        
     </View>
   );
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.DARK_GRAY,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   optionBox: {
      flexDirection: "row",
@@ -147,24 +148,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.DARK_GRAY,
   },
-  startButton: {
-    backgroundColor: Colors.PRIMARY,
-    paddingVertical: 15,
-    borderRadius: 12,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  startButtonText: {
-    color: Colors.WHITE,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  skip: {
-    textAlign: "center",
-    marginTop: 15,
-    fontSize: 14,
-    color: Colors.DARK_GRAY,
-  },
 });
 
-export default IntroScreen;
+export default BikeScreen;

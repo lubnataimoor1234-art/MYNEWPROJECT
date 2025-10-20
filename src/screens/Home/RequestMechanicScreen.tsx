@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { MapPin, DollarSign, Clock } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
-import CustomHeader from "../../components/CustomHeader";
+import MainHeader from "../../components/MainHeader";
 
 const RequestMechanicScreen = () => {
   const route = useRoute<any>();
@@ -43,9 +43,9 @@ const RequestMechanicScreen = () => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <CustomHeader
+      <MainHeader
         title="Request a Mechanic"
-        subtitle="Tell us your issue and set your budget"
+        //subtitle="Tell us your issue and set your budget"
         showBack
       />
 
@@ -68,19 +68,6 @@ const RequestMechanicScreen = () => {
           </View>
         </View>
       </View>
-
-      {/* <View style={styles.section}>
-        <Text style={styles.label}>Selected Service</Text>
-        <View style={styles.selectedService}>
-          <View style={styles.circle} />
-          <View>
-            <Text style={styles.serviceTitle}>{service || "Bike Puncture"}</Text>
-            <Text style={styles.serviceDesc}>
-              {desc || "Flat tire repair or tube replacement"}
-            </Text>
-          </View>
-        </View>
-      </View> */}
 
       {/* Location */}
       <View style={styles.section}>

@@ -5,6 +5,7 @@ import InputField from '../../../components/InputField';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import { ArrowLeft } from 'lucide-react-native';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
+import CustomHeader from '../../../components/MainHeader';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

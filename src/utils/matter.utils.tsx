@@ -1,9 +1,4 @@
 import { moderateScale, verticalScale } from "react-native-size-matters";
-
-
-
-
-
 const matter = {
   moderateScale,
   verticalScale,

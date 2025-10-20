@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { CheckCircle2, Star } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
 import { useNavigation } from "@react-navigation/native";
 
@@ -49,24 +49,102 @@ const BookingsScreen = () => {
         </View>
       </View>
 
-      {/* <TouchableOpacity
+       {/* <TouchableOpacity
         style={styles.primaryButton}
         onPress={() => navigation.navigate("TrackMechanic")}
       >
         <Text style={styles.primaryButtonText}>Track Mechanic</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity> 
 
-       {/* <TouchableOpacity
+       <TouchableOpacity
         style={styles.secondaryButton}
         onPress={() => navigation.navigate("HomeScreen")}
       >
         <Text style={styles.secondaryButtonText}>Back to Home</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>  */}
     </View> 
   );
 };
+// import React from "react";
+// import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+// import { CheckCircle2, Star } from "lucide-react-native";
+// import Colors from "../../utils/colors.utils";
+// import matter from "../../utils/matter.utils";
+// //import { StackNavigationProp } from "@react-navigation/stack";
+// import { useNavigation } from "@react-navigation/native";
+// import { BidStackParamList } from "../../navigation/BidStack";
 
-export default BookingsScreen;
+
+// type BookingsScreenNavigationProp = StackNavigationProp<BidStackParamList, "BookingsScreen">;
+
+// const BookingsScreen = () => {
+//   const navigation = useNavigation<BookingsScreenNavigationProp>();
+
+//   return (
+//     <View style={styles.container}>
+//       {/* ✅ Checkmark Icon */}
+//       <View style={styles.iconContainer}>
+//         <CheckCircle2 size={70} color={Colors.PRIMARY} />
+//       </View>
+
+//       <Text style={styles.title}>Booking Confirmed!</Text>
+//       <Text style={styles.subtitle}>
+//         Amit Sharma is preparing to head to your location
+//       </Text>
+
+//       {/* ✅ Mechanic Card */}
+//       <View style={styles.card}>
+//         <View style={styles.rowBetween}>
+//           <View>
+//             <Text style={styles.name}>Amit Sharma</Text>
+//             <View style={styles.ratingRow}>
+//               <Star
+//                 size={matter.moderateScale(14)}
+//                 color="#FFD700"
+//                 fill="#FFD700"
+//               />
+//               <Text style={styles.ratingText}>4.8 • 287 jobs</Text>
+//             </View>
+//           </View>
+//           <Text style={styles.service}>Battery Issues</Text>
+//         </View>
+
+//         <View style={styles.infoRow}>
+//           <Text style={styles.label}>Distance</Text>
+//           <Text style={styles.value}>3.1 km</Text>
+//         </View>
+//         <View style={styles.infoRow}>
+//           <Text style={styles.label}>Arrival time</Text>
+//           <Text style={styles.value}>20 min</Text>
+//         </View>
+//         <View style={styles.infoRow}>
+//           <Text style={styles.label}>Total Price</Text>
+//           <Text style={styles.price}>$40</Text>
+//         </View>
+//       </View>
+
+//       {/* ✅ Buttons */}
+//       <TouchableOpacity
+//         style={styles.primaryButton}
+//         onPress={() => navigation.navigate("TrackMechanic")}
+//       >
+//         <Text style={styles.primaryButtonText}>Track Mechanic</Text>
+//       </TouchableOpacity>
+
+//       <TouchableOpacity
+//         style={styles.secondaryButton}
+//         onPress={() => navigation.navigate("HomeScreen")}
+//       >
+//         <Text style={styles.secondaryButtonText}>Back to Home</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+// export default BookingsScreen;
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -171,6 +249,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+
+
+
 // import React from "react";
 // import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 // import { CheckCircle } from "lucide-react-native";

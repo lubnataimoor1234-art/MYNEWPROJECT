@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 //import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { Menu, User, MapPin } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 
 const HomeScreen = () => {
   return (

@@ -9,9 +9,9 @@ import {
   Alert,
 } from "react-native";
 import { Trash2, Star } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
-import CustomHeader from "../../components/CustomHeader";
+import MainHeader from "../../components/MainHeader";
 
 const HistoryScreen = () => {
   const [activeTab, setActiveTab] = useState("active");
@@ -72,7 +72,7 @@ const HistoryScreen = () => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title="History" showProfile />
+      <MainHeader title="History"  />
 
       {/* Tabs */}
       <View style={styles.tabContainer}>
@@ -195,168 +195,3 @@ const styles = StyleSheet.create({
   },
 });
 
-// import React, { useState } from "react";
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   TouchableOpacity,
-//   FlatList,
-// } from "react-native";
-// import { Trash2 } from "lucide-react-native";
-// import { SafeAreaView } from "react-native-safe-area-context";
-// import Colors from "../../utils/colors.utils";
-// import matter from "../../utils/matter.utils";
-// import CustomHeader from "../../components/CustomHeader";
-// import { moderateScale, verticalScale } from "react-native-size-matters";
-
-// const ServiceHistoryScreen = () => {
-//   const [activeTab, setActiveTab] = useState<"active" | "pending" | "completed">(
-//     "active"
-//   );
-
-//   const tabs = [
-//     { key: "active", label: "Active" },
-//     { key: "pending", label: "Pending" },
-//     { key: "completed", label: "Completed" },
-//   ];
-
-//   // Example data (unique per tab)
-//   const data = {
-//     active: [
-//       { id: "1", title: "Oil Change - Honda Civic", date: "12 Oct 2025" },
-//       { id: "2", title: "Tire Replacement - Corolla", date: "10 Oct 2025" },
-//     ],
-//     pending: [
-//       { id: "3", title: "Engine Repair - Suzuki Alto", date: "8 Oct 2025" },
-//     ],
-//     completed: [
-//       { id: "4", title: "AC Repair - Honda City", date: "5 Oct 2025" },
-//       { id: "5", title: "Brake Check - Kia Sportage", date: "2 Oct 2025" },
-//     ],
-//   };
-
-//   const handleDelete = (id: string) => {
-//     console.log("Deleted item:", id);
-//     // You can later implement actual delete logic here
-//   };
-
-//   const renderItem = ({ item }: any) => (
-//     <View style={styles.card}>
-//       <View style={{ flex: 1 }}>
-//         <Text style={styles.serviceTitle}>{item.title}</Text>
-//         <Text style={styles.serviceDate}>{item.date}</Text>
-//       </View>
-//       <TouchableOpacity onPress={() => handleDelete(item.id)}>
-//         <Trash2 color={Colors.RED} size={22} />
-//       </TouchableOpacity>
-//     </View>
-//   );
-
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <CustomHeader title="Service History" showBack={true} />
-
-//       {/* Tabs */}
-//       <View style={styles.tabContainer}>
-//         {tabs.map((tab) => (
-//           <TouchableOpacity
-//             key={tab.key}
-//             onPress={() => setActiveTab(tab.key as any)}
-//             style={[
-//               styles.tabButton,
-//               activeTab === tab.key && styles.activeTabButton,
-//             ]}
-//           >
-//             <Text
-//               style={[
-//                 styles.tabText,
-//                 activeTab === tab.key && styles.activeTabText,
-//               ]}
-//             >
-//               {tab.label}
-//             </Text>
-//           </TouchableOpacity>
-//         ))}
-//       </View>
-
-//       {/* List */}
-//       <FlatList
-//         data={data[activeTab]}
-//         renderItem={renderItem}
-//         keyExtractor={(item) => item.id}
-//         contentContainerStyle={styles.listContainer}
-//         ListEmptyComponent={
-//           <Text style={styles.emptyText}>No {activeTab} services found.</Text>
-//         }
-//       />
-//     </SafeAreaView>
-//   );
-// };
-
-// export default ServiceHistoryScreen;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: Colors.WHITE,
-//   },
-//   tabContainer: {
-//     flexDirection: "row",
-//     justifyContent: "space-around",
-//     backgroundColor: Colors.BORDER_GREY,
-//     marginHorizontal: matter.spacing.m,
-//     marginTop: verticalScale(10),
-//     borderRadius: moderateScale(30),
-//     paddingVertical: verticalScale(5),
-//   },
-//   tabButton: {
-//     flex: 1,
-//     alignItems: "center",
-//     paddingVertical: verticalScale(6),
-//     borderRadius: moderateScale(20),
-//   },
-//   activeTabButton: {
-//     backgroundColor: Colors.PRIMARY,
-//   },
-//   tabText: {
-//     color: Colors.TEXT,
-//     fontSize: matter.fontSize.sm,
-//     fontWeight: "500",
-//   },
-//   activeTabText: {
-//     color: Colors.WHITE,
-//   },
-//   listContainer: {
-//     paddingHorizontal: matter.spacing.m,
-//     paddingVertical: verticalScale(10),
-//   },
-//   card: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     backgroundColor: Colors.WHITE,
-//     borderRadius: moderateScale(12),
-//     padding: matter.spacing.m,
-//     marginBottom: verticalScale(10),
-//     elevation: 2,
-//     shadowColor: "#000",
-//     shadowOpacity: 0.1,
-//     shadowRadius: 3,
-//   },
-//   serviceTitle: {
-//     fontSize: matter.fontSize.md,
-//     fontWeight: "600",
-//     color: Colors.TEXT,
-//   },
-//   serviceDate: {
-//     fontSize: matter.fontSize.sm,
-//     color: Colors.DARK_GRAY,
-//     marginTop: 3,
-//   },
-//   emptyText: {
-//     textAlign: "center",
-//     color: Colors.DARK_GRAY,
-//     fontSize: matter.fontSize.sm,
-//     marginTop: verticalScale(20),
-//   },
-// });

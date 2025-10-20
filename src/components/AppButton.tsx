@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import Colors from "../utils/colors.utils";
+import Colors from "../utils/Colors.utils";
 
 type Props = {
   title: string;
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 8,
+    
   },
   content: {
     flexDirection: "row",

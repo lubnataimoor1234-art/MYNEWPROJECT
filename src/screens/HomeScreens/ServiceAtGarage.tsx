@@ -173,10 +173,10 @@ import {
 } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
 import { moderateScale, verticalScale } from "react-native-size-matters";
-import CustomHeader from "../../components/CustomHeader";
+import MainHeader from "../../components/MainHeader";
 
 // ✅ Small reusable card component
 const ServiceCard = ({ icon, label, onPress }: any) => (
@@ -228,17 +228,17 @@ const ServiceAtGarageScreen = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
-      {/* ===== Custom Header with Active Map Icon ===== */}
-      <CustomHeader
+   
+      <MainHeader
         title="Service At Garage"
         showBack={true}
         mapActive={true}
         showMap={true}
-        onMapPress={handleMapPress}
+      onMapPress={handleMapPress}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* ===== Sections ===== */}
+
         {services.map((section, index) => (
           <View key={index} style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>{section.title}</Text>

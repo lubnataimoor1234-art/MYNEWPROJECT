@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import Colors from '../utils/colors.utils';
+import Colors from '../utils/Colors.utils';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const mockSuggestions = [

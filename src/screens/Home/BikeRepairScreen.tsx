@@ -170,8 +170,8 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import CustomHeader from "../../components/CustomHeader";
-import Colors from "../../utils/colors.utils";
+import MainHeader from "../../components/MainHeader";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
 import strings from "../../utils/strings.utils";
 
@@ -189,10 +189,10 @@ const BikeRepairScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <CustomHeader title={headerTitle}
-       showSearch 
-       onSearchChange={setSearch}
-       showBack showProfile />
+      <MainHeader title={headerTitle}
+       //showSearch 
+      // onSearchChange={setSearch}
+       showBack  />
 
       {/* Banner */}
       <View style={styles.bannerCard}>

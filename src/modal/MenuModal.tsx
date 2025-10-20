@@ -68,7 +68,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Colors from '../utils/colors.utils';
+import Colors from '../utils/Colors.utils';
 
 const MenuModal = () => {
   return (

@@ -10,17 +10,15 @@ import {
 } from "react-native";
 //import * as ImagePicker from "expo-image-picker";
 import { Camera, Phone, Mail, Edit3, Info, LogOut, HelpCircle } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
 import { useNavigation } from "@react-navigation/native";
-import CustomHeader from "../../components/CustomHeader";
-
+import CustomHeader from "../../components/MainHeader";
+import AppButton from "../../components/AppButton";
+import strings from "../../utils/strings.utils";
 const ProfileScreen = () => {
   const navigation = useNavigation();
-  const [profileImage, setProfileImage] = useState(
-   // require("../../assets/pngs/mechanic.png")
-  );
-
+  
   const handleLogout = () => {
     Alert.alert("Logout", "Are you sure you want to logout?", [
       { text: "Cancel", style: "cancel" },
@@ -64,7 +62,6 @@ const ProfileScreen = () => {
             }}
             style={styles.profileImage}
           />
-            {/* <Image source={profileImage} style={styles.profileImage} /> */}
             <TouchableOpacity style={styles.cameraIcon} onPress={pickImage}>
               <Camera size={16} color={Colors.WHITE} />
             </TouchableOpacity>
@@ -106,11 +103,13 @@ const ProfileScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Logout Button */}
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <LogOut size={20} color={Colors.WHITE} />
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
+        
+
+<AppButton
+          title={strings.EditProfile.Btn}
+          onPress={() => navigation.navigate("SingnIn" as never)}
+          type="primary"
+        />
       </ScrollView>
     </View>
   );
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: matter.spacing.m,
   },
   infoText: {
-    fontSize: matter.fontSize.md,
+    fontSize: matter.fontSize.sm,
     color: Colors.TEXT,
     marginLeft: matter.spacing.s,
   },
@@ -191,42 +190,31 @@ const styles = StyleSheet.create({
     paddingVertical: matter.spacing.m,
     paddingHorizontal: matter.spacing.m,
     elevation: 2,
+    
   },
   optionRow: {
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: matter.spacing.m,
-    paddingHorizontal: matter.spacing.l,
+    paddingHorizontal: matter.spacing.m,
     borderBottomWidth: 1,
     borderBottomColor: Colors.BORDER_GREY,
+     borderRadius: matter.radius.md,
+     marginBottom:8,
   },
   option: {
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: matter.spacing.m,
-    paddingHorizontal: matter.spacing.l,
+    paddingHorizontal: matter.spacing.m,
+    
   },
   optionText: {
-    fontSize: matter.fontSize.md,
+    fontSize: matter.fontSize.sm,
     color: Colors.TEXT,
     marginLeft: matter.spacing.m,
   },
-  logoutButton: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.PRIMARY,
-    marginHorizontal: matter.spacing.l,
-    borderRadius: matter.radius.lg,
-    paddingVertical: matter.padding.buttonV,
-    marginTop: matter.spacing.xl,
-  },
-  logoutText: {
-    color: Colors.WHITE,
-    fontSize: matter.fontSize.md,
-    fontWeight: "600",
-    marginLeft: matter.spacing.s,
-  },
+  
 });
 
 

@@ -12,7 +12,7 @@ import HomeStack from "./HomeStack";
 import BidStack from "./BidStack";
 import HistoryScreen from "../screens/History/HistoryScreen";
 import { HomeTab } from "../assets/pngs";
-import Colors from "../utils/colors.utils";
+import Colors from "../utils/Colors.utils";
 import ProfileStack from "./ProfileStack";
 type MainTabsParamList = {
   auth:undefined;

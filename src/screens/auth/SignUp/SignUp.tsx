@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Colors from '../../../utils/colors.utils';
+import Colors from '../../../utils/Colors.utils';
 import InputField from '../../../components/InputField';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react-native';
