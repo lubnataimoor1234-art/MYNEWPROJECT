@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Wrench, Truck,Battery, Fuel, Settings, Bike } from "lucide-react-native";
-import Colors from "./colors.utils";
+import Colors from "./Colors.utils";
 
 const strings = {
   home: {
@@ -22,13 +22,21 @@ const strings = {
   },
 
   history: {
+    
     active: "Active Bids",
     pending: "Pending Bids",
     completed: "Completed Bids",
     title: "Service History",
     subtitle: "Your past bookings and bids",
   },
-
+  bikeHome:{
+    btn: "Get Started",
+  },
+  EditProfile:
+  {
+    ProfileBtn: "Save Changes",
+    Btn:" Logout",
+  },
   common: {
     learnMore: "Learn more →",
     searchPlaceholder: "Search",

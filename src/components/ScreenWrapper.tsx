@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.WHITE,
-    padding: moderateScale(16),
+  
     borderBottomLeftRadius: moderateScale(20),
     borderBottomRightRadius: moderateScale(20)
   },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   scrollContent: {
     flexGrow: 1,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
     padding: moderateScale(16),
     borderTopLeftRadius: moderateScale(20),
-    borderTopRightRadius: moderateScale(20)
+    borderTopRightRadius: moderateScale(20),
   },
   absoluteFooter: {
     position: 'absolute',

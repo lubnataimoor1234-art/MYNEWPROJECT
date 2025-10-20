@@ -9,9 +9,9 @@ import {
   Alert,
 } from "react-native";
 import { Phone, Mail, MessageSquare, HelpCircle, Send } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import matter from "../../utils/matter.utils";
-import CustomHeader from "../../components/CustomHeader";
+import CustomHeader from "../../components/MainHeader";
 
 const HelpSupportScreen = () => {
   const handleCall = () => Linking.openURL("tel:+923001234567");

@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Search, RefreshCcw, HelpCircle } from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../../utils/Colors.utils";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "lucide-react-native";
 import matter from "../../utils/matter.utils";
 import strings from "../../utils/strings.utils";
-const IntroScreen = () => {
+import AppButton from "../../components/AppButton";
+const BikeScreen = () => {
   const navigation = useNavigation();
   
 
@@ -22,7 +23,9 @@ const IntroScreen = () => {
           resizeMode="contain"
         />
       </View>
-      <Text style={styles.title}>On-Demand Bike Mechanics</Text>
+      <Text style={styles.title}>On-Demand Bike</Text>
+         <Text style={styles.title2}>Mechanics </Text>
+    
       <Text style={styles.subtitle}>
         Bike broke down? Set your budget. Mechanics bid. You choose the best deal!
       </Text>
@@ -67,11 +70,11 @@ const IntroScreen = () => {
         </View>
       </TouchableOpacity>
 
-      {/* Get Started Button */}
-      <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText}>Get Started</Text>
-        
-      </TouchableOpacity>
+       <AppButton
+        title={strings.bikeHome.btn}
+        onPress={() => navigation.navigate("BikeRepairScreen" as never)}
+        type="primary"
+      />
        
     </View>
   );
@@ -83,9 +86,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
   },
   imageContainer: {
+    
     alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 20,
+    justifyContent: "flex-start",
+  backgroundColor: Colors.DARK_GRAY,
     
   },
   image: {
@@ -96,18 +100,27 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 22,
+    marginTop:15,
+    fontSize: 25,
     fontWeight: "700",
     color: Colors.TEXT,
     textAlign: "center",
-    marginBottom: 5,
+  },
+  title2:
+   {
+    fontSize: 25,
+    fontWeight: "700",
+    color: Colors.TEXT,
+    textAlign: "center",
+    marginBottom: 10,
 
-  },backButton: { padding: 10 },
+  },
+  backButton: { padding: 10 },
   subtitle: {
     fontSize: 14,
     color: Colors.DARK_GRAY,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   optionBox: {
      flexDirection: "row",
@@ -121,18 +134,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.BORDER_GREY,
     marginBottom: 12,
     elevation: 2,
-    // width: "80%",
-    // backgroundColor: Colors.WHITE,
-    // borderRadius: matter.radius.lg,
-    // paddingVertical: matter.padding.buttonV,
-    // paddingHorizontal: matter.padding.buttonH,
-    // flexDirection: "row",
-    // alignItems: "center",
-    // marginBottom: matter.spacing.m,
-    // borderWidth: 1,
-    // borderColor: Colors.BORDER_GREY, 
-    // elevation: 2,
-
   },
   optionTextBox: {
     marginLeft: 12,
@@ -147,24 +148,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.DARK_GRAY,
   },
-  startButton: {
-    backgroundColor: Colors.PRIMARY,
-    paddingVertical: 15,
-    borderRadius: 12,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  startButtonText: {
-    color: Colors.WHITE,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  skip: {
-    textAlign: "center",
-    marginTop: 15,
-    fontSize: 14,
-    color: Colors.DARK_GRAY,
-  },
 });
 
-export default IntroScreen;
+export default BikeScreen;

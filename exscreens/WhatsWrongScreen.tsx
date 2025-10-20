@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { BatteryCharging, CircleDot, Car, Fuel , ArrowLeft } from "lucide-react-native";
-import Colors from "../src/utils/colors.utils";
+import Colors from "../src/utils/Colors.utils";
 import { useNavigation } from "@react-navigation/native";
 
 const WhatsWrongScreen = () => {

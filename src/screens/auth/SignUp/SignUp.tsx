@@ -5,13 +5,13 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import Colors from '../../utils/Colors.utils';
-import InputField from '../../components/Input/Input';
+
+import Colors from '../../../utils/Colors.utils';
+import InputField from '../../../components/InputField';
+import ScreenWrapper from '../../../components/ScreenWrapper';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react-native';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
-import ScreenWrapper from '@components/ScreenWrapper/ScreenWrapper';
-
 const SignUp = () => {
   const navigation = useNavigation<any>();
   
