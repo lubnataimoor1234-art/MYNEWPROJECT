@@ -407,7 +407,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../utils/Colors.utils";
-import matter from "../../utils/matter.utils";
+
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import i18n from "../../utils/i18n.utils";
 import MainHeader from "../../components/MainHeader";
@@ -424,13 +424,10 @@ const HomeScreen = () => {
   return (
     <ScreenWrapper
       header={<MainHeader title={i18n.t("appName")} showBell showBack />}
-      backgroundColor={Colors.BACKGROUND}
-      isScrollable={true}
-    
     >
-      {/* ===== SERVICES ===== */}
+    
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{i18n.t("home.popularServices")}</Text>
+        <Text style={styles.sectionTitle}>{i18n.t("popularServices")}</Text>
 
         <View style={styles.servicesContainer}>
           {services.map((service) => (
@@ -449,7 +446,7 @@ const HomeScreen = () => {
       {/* ===== EXCLUSIVE SERVICES ===== */}
       <View style={styles.exclusiveSection}>
         <Text style={styles.sectionTitle}>
-          {i18n.t("home.exclusiveServices") || "Exclusive Services"}
+          {i18n.t("exclusiveServices") || "Exclusive Services"}
         </Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -460,12 +457,12 @@ const HomeScreen = () => {
             />
             <View style={styles.exclusiveOverlay}>
               <Text style={styles.exclusiveTitle}>
-                {i18n.t("home.personalisedService") ||
+                {i18n.t("personalisedService") ||
                   "Personalised Service of Expert Advisors"}
               </Text>
               <TouchableOpacity style={styles.getServiceBtn}>
                 <Text style={styles.getServiceText}>
-                  {i18n.t("home.getService") || "Get the service"}
+                  {i18n.t("getService") || "Get the service"}
                 </Text>
               </TouchableOpacity>
             </View>

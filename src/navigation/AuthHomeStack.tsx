@@ -14,7 +14,7 @@ import EmergencyService from "../screens/HomeScreens/EmergencyServiceScreen";
 
 
 export type HomeStackParamList = {
-  HomeScreen: undefined;
+  Home: undefined;
   MapScreen: undefined;
   ServiceProviderScreen: undefined;
   BikeRepairScreen: undefined;
@@ -32,15 +32,15 @@ const Stack = createNativeStackNavigator<HomeStackParamList>();
 const HomeStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name ="Home" component={Home} />
-      <Stack.Screen name="MapScreen" component={MapScreen} /> 
-      <Stack.Screen name="ServiceProviderScreen"component={ServiceProviderScreen}/>
-      <Stack.Screen name="BikeRepairScreen" component={BikeRepairScreen} />
+      <Stack.Screen  name ="Home" component={Home} />
+      <Stack.Screen  name="MapScreen" component={MapScreen} /> 
+      <Stack.Screen  name="ServiceProviderScreen"component={ServiceProviderScreen}/>
+      <Stack.Screen  name="BikeRepairScreen" component={BikeRepairScreen} />
        <Stack.Screen name="bikeHome" component={bikeHome} />
-      <Stack.Screen name="RequestMechanicScreen" component={RequestMechanicScreen} />
+      <Stack.Screen  name="RequestMechanicScreen" component={RequestMechanicScreen} />
        <Stack.Screen name="ServiceAtGarage" component={ServiceAtGarage} />
-      <Stack.Screen name="DoorServices"component={DoorServices} /> 
-      <Stack.Screen name="EmergencyService"component={EmergencyService} />
+      <Stack.Screen  name="DoorServices"component={DoorServices} /> 
+      <Stack.Screen  name="EmergencyService"component={EmergencyService} />
     </Stack.Navigator>
   );
 };
