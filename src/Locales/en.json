@@ -1,12 +1,9 @@
+
 {
   "appName": "Fix My Ride",
-  "home": {
-    
-    "title": "Home",
-    "popularServices": "Popular Services",
-    "viewAll": "View All"
-  },
-  "services": {
+  "title": "Home",
+  "popularServices": "Popular Services",
+  "viewAll": "View All",
   "garage": "Service Garage",
   "door": "Door Services",
   "emergency": "Emergency Service",
@@ -14,10 +11,8 @@
   "rentCar": "Rent A Car",
   "insurance": "Insurance Service",
   "driver": "Driver /Rider",
-  "mechanic": "Mechanic /Service Provider"
-},
-"exclusiveServices": "Exclusive Services",
-"personalisedService": "Personalised Service of Expert Advisors",
-"getService": "Get the service"
+  "mechanic": "Mechanic /Service Provider",
+  "exclusiveServices": "Exclusive Services",
+  "personalisedService": "Personalised Service of Expert Advisors",
+  "getService": "Get the service"
 }
- 

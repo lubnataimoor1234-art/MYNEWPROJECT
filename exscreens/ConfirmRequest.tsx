@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 //import MapView, { Marker } from "react-native-maps";
 import {ArrowLeft }from "lucide-react-native";
-import Colors from "../../utils/colors.utils";
+import Colors from "../src/utils/colors.utils";
 import { useNavigation } from "@react-navigation/native";
 
 const ConfirmRequestScreen = () => {
@@ -19,27 +19,14 @@ const ConfirmRequestScreen = () => {
       </View>
      
 
-      {/* Google Map */}
-      {/* <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 37.7749,
-          longitude: -122.4194,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Marker coordinate={{ latitude: 37.7749, longitude: -122.4194 }} />
-      </MapView> */}
+  
 
-      {/* Description Box */}
       <TextInput
         style={styles.input}
         placeholder="Add a description of your issue..."
         multiline
       />
 
-      {/* Broadcast Button */}
       <TouchableOpacity style={styles.broadcastBtn}>
         <Text style={styles.broadcastText}>Broadcast Request</Text>
       </TouchableOpacity>

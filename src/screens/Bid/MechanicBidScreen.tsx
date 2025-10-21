@@ -741,162 +741,310 @@
 //     justifyContent: "center",
 //   },
 // });
+
+
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   TouchableOpacity,
+//   FlatList,
+//   Image,
+//   Alert,
+// } from "react-native";
+// import { MapPin, Star, Phone, MessageSquare } from "lucide-react-native";
+// import { useNavigation } from "@react-navigation/native";
+// import MainHeader from "../../components/MainHeader";
+// import Colors from "../../utils/Colors.utils";
+// import ChatModal from "../../components/ChatModal";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import { mechanicsData } from "../../DATA/MechanicData";
+// import { moderateScale, verticalScale } from "react-native-size-matters";
+
+// const MechanicsBidScreen: React.FC = () => {
+//   const navigation = useNavigation();
+//   const [activeIcons, setActiveIcons] = useState<{ [key: string]: string }>({});
+//   const [chatVisible, setChatVisible] = useState(false);
+//   const [selectedMechanic, setSelectedMechanic] = useState<any>(null);
+
+//   const handleAcceptBid = (mechanicName: string, price: number) => {
+//     Alert.alert(
+//       "Bid Accepted ✅",
+//       `You have accepted ${mechanicName}'s bid for $${price}.`,
+//       [
+//         {
+//           text: "OK",
+//           onPress: () => navigation.navigate("BookingsScreen" as never),
+//         },
+//       ]
+//     );
+//   };
+
+//   const toggleIcon = (mechanicId: string, type: "message" | "call") => {
+//     setActiveIcons((prev) => {
+//       const key = `${mechanicId}-${type}`;
+//       return {
+//         ...prev,
+//         [key]: prev[key] === "active" ? "" : "active",
+//       };
+//     });
+//   };
+
+//   const renderBidCard = ({ item }: any) => (
+//     <View style={styles.card}>
+//       {/* ===== Top Row ===== */}
+//       <View style={styles.topRow}>
+//         <View style={{ flex: 1 }}>
+//           <Text style={styles.serviceText}>{item.service}</Text>
+
+//           <View style={styles.row}>
+//             <MapPin size={14} color={Colors.TEXT} />
+//             <Text style={styles.locationText}> {item.location}</Text>
+//           </View>
+
+//           <View style={styles.row}>
+//             <Star size={14} color={Colors.PRIMARY} />
+//             <Text style={styles.ratingText}> {item.rating} Rating</Text>
+//           </View>
+//         </View>
+
+//         <TouchableOpacity
+//           style={styles.acceptBtn}
+//           onPress={() => handleAcceptBid(item.name, item.price)}
+//         >
+//           <Text style={styles.acceptText}>Accept Bid</Text>
+//         </TouchableOpacity>
+//       </View>
+
+//       <View style={styles.divider} />
+
+//       {/* ===== Bottom Row ===== */}
+//       <View style={styles.bottomRow}>
+//         <View style={styles.mechanicInfo}>
+//           <Image source={{ uri: item.image }} style={styles.avatar} />
+//           <View>
+//             <Text style={styles.mechanicName}>{item.name}</Text>
+//             <Text
+//               style={[
+//                 styles.status,
+//                 { color: item.online ? Colors.YELLOW : Colors.DARK_GRAY },
+//               ]}
+//             >
+//               {item.online ? "Online" : "Offline"}
+//             </Text>
+//           </View>
+//         </View>
+
+//         <View style={styles.row}>
+//           <Text style={styles.priceText}>${item.price}</Text>
+
+//           {/* Message Button */}
+//           <TouchableOpacity
+//             style={[
+//               styles.iconBtn,
+//               activeIcons[`${item.id}-message`] === "active" && {
+//                 backgroundColor: Colors.PRIMARY,
+//               },
+//             ]}
+//             onPress={() => {
+//               toggleIcon(item.id, "message");
+//               setSelectedMechanic(item);
+//               setChatVisible(true);
+//             }}
+//           >
+//             <MessageSquare
+//               size={18}
+//               color={
+//                 activeIcons[`${item.id}-message`] === "active"
+//                   ? Colors.WHITE
+//                   : Colors.PRIMARY
+//               }
+//             />
+//           </TouchableOpacity>
+
+//           {/* Call Button */}
+//           <TouchableOpacity
+//             style={[
+//               styles.iconBtn,
+//               activeIcons[`${item.id}-call`] === "active" && {
+//                 backgroundColor: Colors.PRIMARY,
+//               },
+//             ]}
+//             onPress={() => toggleIcon(item.id, "call")}
+//           >
+//             <Phone
+//               size={18}
+//               color={
+//                 activeIcons[`${item.id}-call`] === "active"
+//                   ? Colors.WHITE
+//                   : Colors.PRIMARY
+//               }
+//             />
+//           </TouchableOpacity>
+//         </View>
+//       </View>
+//     </View>
+//   );
+
+//   return (
+//     <ScreenWrapper
+//       header={<MainHeader title="Mechanic Bids" showSearch />}
+    
+//     >
+//       <FlatList
+//         data={mechanicsData}
+//         renderItem={renderBidCard}
+//         keyExtractor={(item) => item.id}
+//         showsVerticalScrollIndicator={false}
+//         contentContainerStyle={{ paddingBottom: 30 }}
+//       />
+
+//       {/* Chat Modal */}
+//       <ChatModal
+//         visible={chatVisible}
+//         onClose={() => setChatVisible(false)}
+//         mechanic={selectedMechanic}
+//       />
+//     </ScreenWrapper>
+//   );
+// };
+
+// export default MechanicsBidScreen;
+
+// const styles = StyleSheet.create({
+//   card: {
+//     backgroundColor: Colors.WHITE,
+//     borderRadius: moderateScale(20),
+//     padding: moderateScale(16),
+//     marginBottom: verticalScale(15),
+//     elevation: 4,
+//     shadowColor: "#000",
+//     shadowOpacity: 0.1,
+//     shadowRadius: 6,
+//   },
+//   topRow: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     alignItems: "flex-start",
+//   },
+//   serviceText: {
+//     fontSize: moderateScale(16),
+//     fontWeight: "700",
+//     color: Colors.TEXT,
+//     marginBottom: verticalScale(4),
+//   },
+//   row: { flexDirection: "row", alignItems: "center", marginTop: 2 },
+//   locationText: {
+//     fontSize: moderateScale(12),
+//     color: Colors.DARK_GRAY,
+//   },
+//   ratingText: {
+//     fontSize: moderateScale(12),
+//     color: Colors.TEXT,
+//   },
+//   acceptBtn: {
+//     backgroundColor: Colors.PRIMARY,
+//     paddingVertical: verticalScale(8),
+//     paddingHorizontal: moderateScale(16),
+//     borderRadius: moderateScale(10),
+//   },
+//   acceptText: {
+//     color: Colors.WHITE,
+//     fontWeight: "700",
+//     fontSize: moderateScale(13),
+//   },
+//   divider: {
+//     height: 1,
+//     backgroundColor: Colors.BORDER_GREY,
+//     marginVertical: verticalScale(10),
+//   },
+//   bottomRow: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//   },
+//   mechanicInfo: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//   },
+//   avatar: {
+//     width: moderateScale(45),
+//     height: moderateScale(45),
+//     borderRadius: moderateScale(10),
+//     marginRight: moderateScale(10),
+//   },
+//   mechanicName: {
+//     fontSize: moderateScale(14),
+//     fontWeight: "700",
+//     color: Colors.TEXT,
+//   },
+//   status: {
+//     fontSize: moderateScale(12),
+//     fontWeight: "500",
+//     marginTop: verticalScale(2),
+//   },
+//   priceText: {
+//     fontSize: moderateScale(18),
+//     fontWeight: "700",
+//     color: Colors.TEXT,
+//     marginRight: moderateScale(8),
+//   },
+//   iconBtn: {
+//     marginLeft: moderateScale(8),
+//     backgroundColor: Colors.BORDER_GREY,
+//     padding: moderateScale(8),
+//     borderRadius: 50,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
+
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  Image,
-  Alert,
-} from "react-native";
-import { MapPin, Star, Phone, MessageSquare } from "lucide-react-native";
+import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MainHeader from "../../components/MainHeader";
-import Colors from "../../utils/Colors.utils";
-import matter from "../../utils/matter.utils";
-import ChatModal from "../../components/ChatModal";
 import ScreenWrapper from "../../components/ScreenWrapper";
+import MainHeader from "../../components/MainHeader";
+
+import MechanicCard from "../../components/MechanicCard";
 import { mechanicsData } from "../../DATA/MechanicData";
-import { moderateScale, verticalScale } from "react-native-size-matters";
+import ChatModal from "../../components/ChatModal";
 
 const MechanicsBidScreen: React.FC = () => {
   const navigation = useNavigation();
-  const [activeIcons, setActiveIcons] = useState<{ [key: string]: string }>({});
   const [chatVisible, setChatVisible] = useState(false);
   const [selectedMechanic, setSelectedMechanic] = useState<any>(null);
+  const [detailVisible, setDetailVisible] = useState(false);
+
+  const handleOpenChat = (mechanic: any) => {
+    setSelectedMechanic(mechanic);
+    setChatVisible(true);
+  };
+
+  const handleOpenDetails = (mechanic: any) => {
+    setSelectedMechanic(mechanic);
+    setDetailVisible(true);
+  };
 
   const handleAcceptBid = (mechanicName: string, price: number) => {
-    Alert.alert(
-      "Bid Accepted ✅",
-      `You have accepted ${mechanicName}'s bid for $${price}.`,
-      [
-        {
-          text: "OK",
-          onPress: () => navigation.navigate("BookingsScreen" as never),
-        },
-      ]
-    );
+    (`You accepted ${mechanicName}'s bid for $${price}`);
+    navigation.navigate("BookingsScreen" as never);
   };
-
-  const toggleIcon = (mechanicId: string, type: "message" | "call") => {
-    setActiveIcons((prev) => {
-      const key = `${mechanicId}-${type}`;
-      return {
-        ...prev,
-        [key]: prev[key] === "active" ? "" : "active",
-      };
-    });
-  };
-
-  const renderBidCard = ({ item }: any) => (
-    <View style={styles.card}>
-      {/* ===== Top Row ===== */}
-      <View style={styles.topRow}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.serviceText}>{item.service}</Text>
-
-          <View style={styles.row}>
-            <MapPin size={14} color={Colors.TEXT} />
-            <Text style={styles.locationText}> {item.location}</Text>
-          </View>
-
-          <View style={styles.row}>
-            <Star size={14} color={Colors.PRIMARY} />
-            <Text style={styles.ratingText}> {item.rating} Rating</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={styles.acceptBtn}
-          onPress={() => handleAcceptBid(item.name, item.price)}
-        >
-          <Text style={styles.acceptText}>Accept Bid</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.divider} />
-
-      {/* ===== Bottom Row ===== */}
-      <View style={styles.bottomRow}>
-        <View style={styles.mechanicInfo}>
-          <Image source={{ uri: item.image }} style={styles.avatar} />
-          <View>
-            <Text style={styles.mechanicName}>{item.name}</Text>
-            <Text
-              style={[
-                styles.status,
-                { color: item.online ? Colors.YELLOW : Colors.DARK_GRAY },
-              ]}
-            >
-              {item.online ? "Online" : "Offline"}
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.priceText}>${item.price}</Text>
-
-          {/* Message Button */}
-          <TouchableOpacity
-            style={[
-              styles.iconBtn,
-              activeIcons[`${item.id}-message`] === "active" && {
-                backgroundColor: Colors.PRIMARY,
-              },
-            ]}
-            onPress={() => {
-              toggleIcon(item.id, "message");
-              setSelectedMechanic(item);
-              setChatVisible(true);
-            }}
-          >
-            <MessageSquare
-              size={18}
-              color={
-                activeIcons[`${item.id}-message`] === "active"
-                  ? Colors.WHITE
-                  : Colors.PRIMARY
-              }
-            />
-          </TouchableOpacity>
-
-          {/* Call Button */}
-          <TouchableOpacity
-            style={[
-              styles.iconBtn,
-              activeIcons[`${item.id}-call`] === "active" && {
-                backgroundColor: Colors.PRIMARY,
-              },
-            ]}
-            onPress={() => toggleIcon(item.id, "call")}
-          >
-            <Phone
-              size={18}
-              color={
-                activeIcons[`${item.id}-call`] === "active"
-                  ? Colors.WHITE
-                  : Colors.PRIMARY
-              }
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
 
   return (
-    <ScreenWrapper
-      header={<MainHeader title="Mechanic Bids" showSearch />}
-    
-    >
+    <ScreenWrapper header={<MainHeader title="Mechanic Bids" />}>
       <FlatList
         data={mechanicsData}
-        renderItem={renderBidCard}
         keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <MechanicCard
+            mechanic={item}
+            onChat={() => handleOpenChat(item)}
+            onDetails={() => handleOpenDetails(item)}
+            onAccept={() => handleAcceptBid(item.name, item.price)}
+          />
+        )}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 30 }}
       />
 
       {/* Chat Modal */}
@@ -905,96 +1053,16 @@ const MechanicsBidScreen: React.FC = () => {
         onClose={() => setChatVisible(false)}
         mechanic={selectedMechanic}
       />
+
+      {/* Mechanic Details Modal */}
+      <ChatModal
+        visible={detailVisible}
+        onClose={() => setDetailVisible(false)}
+        mechanic={selectedMechanic}
+      />
     </ScreenWrapper>
   );
 };
 
 export default MechanicsBidScreen;
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: Colors.WHITE,
-    borderRadius: moderateScale(20),
-    padding: moderateScale(16),
-    marginBottom: verticalScale(15),
-    elevation: 4,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-  },
-  topRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-  },
-  serviceText: {
-    fontSize: moderateScale(16),
-    fontWeight: "700",
-    color: Colors.TEXT,
-    marginBottom: verticalScale(4),
-  },
-  row: { flexDirection: "row", alignItems: "center", marginTop: 2 },
-  locationText: {
-    fontSize: moderateScale(12),
-    color: Colors.DARK_GRAY,
-  },
-  ratingText: {
-    fontSize: moderateScale(12),
-    color: Colors.TEXT,
-  },
-  acceptBtn: {
-    backgroundColor: Colors.PRIMARY,
-    paddingVertical: verticalScale(8),
-    paddingHorizontal: moderateScale(16),
-    borderRadius: moderateScale(10),
-  },
-  acceptText: {
-    color: Colors.WHITE,
-    fontWeight: "700",
-    fontSize: moderateScale(13),
-  },
-  divider: {
-    height: 1,
-    backgroundColor: Colors.BORDER_GREY,
-    marginVertical: verticalScale(10),
-  },
-  bottomRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  mechanicInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  avatar: {
-    width: moderateScale(45),
-    height: moderateScale(45),
-    borderRadius: moderateScale(10),
-    marginRight: moderateScale(10),
-  },
-  mechanicName: {
-    fontSize: moderateScale(14),
-    fontWeight: "700",
-    color: Colors.TEXT,
-  },
-  status: {
-    fontSize: moderateScale(12),
-    fontWeight: "500",
-    marginTop: verticalScale(2),
-  },
-  priceText: {
-    fontSize: moderateScale(18),
-    fontWeight: "700",
-    color: Colors.TEXT,
-    marginRight: moderateScale(8),
-  },
-  iconBtn: {
-    marginLeft: moderateScale(8),
-    backgroundColor: Colors.BORDER_GREY,
-    padding: moderateScale(8),
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
