@@ -1,58 +1,31 @@
 
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from "react-native";
-import { Trash2, Star } from "lucide-react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Star } from "lucide-react-native";
+import { ScaledSheet, s, ms } from "react-native-size-matters";
+import { useTranslation } from "react-i18next";
+
 import Colors from "../../utils/Colors.utils";
-import matter from "../../utils/matter.utils";
+import ScreenWrapper from "../../components/ScreenWrapper";
 import MainHeader from "../../components/MainHeader";
+import { activeData, pendingData, completedData } from "../../DATA/HistoryData";
 
 const HistoryScreen = () => {
-  const [activeTab, setActiveTab] = useState("active");
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState<"active" | "pending" | "completed">("active");
 
-  // Dummy data for each tab
-  const activeData = [
-    { id: 1, service: "Oil Change", mechanic: "Ali Workshop", date: "15 Oct 2025", price: 50 },
-    { id: 2, service: "Brake Check", mechanic: "Khan Garage", date: "12 Oct 2025", price: 40 },
-  ];
-
-  const pendingData = [
-    { id: 3, service: "Engine Repair", mechanic: "Raza Auto", date: "10 Oct 2025", price: 120 },
-  ];
-
-  const completedData = [
-    { id: 4, service: "Battery Replacement", mechanic: "Adeel Motors", date: "02 Oct 2025", price: 90 },
-    { id: 5, service: "Wheel Alignment", mechanic: "Zeeshan Auto", date: "25 Sep 2025", price: 60 },
-  ];
-
-  const handleDelete = (id: number) => {
-    Alert.alert("Delete Record", "Are you sure you want to delete this item?", [
-      { text: "Cancel", style: "cancel" },
-      { text: "Delete", style: "destructive", onPress: () => console.log("Deleted:", id) },
-    ]);
+  const getTabData = () => {
+    if (activeTab === "active") return activeData;
+    if (activeTab === "pending") return pendingData;
+    return completedData;
   };
 
-  const renderTabData = () => {
-    const data =
-      activeTab === "active"
-        ? activeData
-        : activeTab === "pending"
-        ? pendingData
-        : completedData;
-
+  const renderCards = () => {
+    const data = getTabData() || [];
     return data.map((item) => (
       <View key={item.id} style={styles.card}>
         <View style={styles.rowBetween}>
-          <Text style={styles.serviceName}>{item.service}</Text>
-          <TouchableOpacity onPress={() => handleDelete(item.id)}>
-            <Trash2 size={18} color={Colors.RED} />
-          </TouchableOpacity>
+          <Text style={styles.serviceName}>{t(item.service)}</Text>
         </View>
 
         <Text style={styles.mechanicName}>{item.mechanic}</Text>
@@ -61,7 +34,7 @@ const HistoryScreen = () => {
         <View style={styles.footerRow}>
           <View style={styles.ratingRow}>
             {[...Array(5)].map((_, i) => (
-              <Star key={i} size={14} color="#FFD700" fill="#FFD700" />
+              <Star key={i} size={14} color={Colors.YELLOW}  fill={Colors.YELLOW} />
             ))}
           </View>
           <Text style={styles.price}>${item.price}</Text>
@@ -71,89 +44,75 @@ const HistoryScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <MainHeader title="History"  />
-
-      {/* Tabs */}
+    <ScreenWrapper
+      header={<MainHeader title={t("history")} showBell showBack />}
+    >
       <View style={styles.tabContainer}>
         {["active", "pending", "completed"].map((tab) => (
           <TouchableOpacity
             key={tab}
-            style={[
-              styles.tabButton,
-              activeTab === tab && styles.activeTab,
-            ]}
-            onPress={() => setActiveTab(tab)}
+            style={[styles.tabButton, activeTab === tab && styles.activeTab]}
+            onPress={() => setActiveTab(tab as any)}
           >
             <Text
-              style={[
-                styles.tabText,
-                activeTab === tab && styles.activeTabText,
-              ]}
+              style={[styles.tabText, activeTab === tab && styles.activeTabText]}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {t(tab)}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
 
-      {/* List */}
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {renderTabData()}
+        {renderCards()}
       </ScrollView>
-    </View>
+    </ScreenWrapper>
   );
 };
 
 export default HistoryScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.BACKGROUND,
-  },
+const styles = ScaledSheet.create({
   tabContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: Colors.WHITE,
-    marginHorizontal: matter.spacing.m,
-    marginTop: matter.spacing.m,
-    borderRadius: matter.radius.lg,
+    marginTop: s(15),
+    borderRadius: s(12),
     borderWidth: 1,
     borderColor: Colors.BORDER_GREY,
-    padding: matter.spacing.s,
+    padding: s(8),
   },
   tabButton: {
     flex: 1,
     alignItems: "center",
-    paddingVertical: matter.spacing.s,
-    borderRadius: matter.radius.md,
+    paddingVertical: s(8),
+    borderRadius: s(8),
   },
   activeTab: {
     backgroundColor: Colors.PRIMARY,
   },
   tabText: {
-    fontSize: matter.fontSize.s,
-    fontWeight: "600",
+    fontSize: 17,
+    fontWeight: "700",
     color: Colors.TEXT,
   },
   activeTabText: {
     color: Colors.WHITE,
   },
   scrollContent: {
-    paddingHorizontal: matter.spacing.m,
-    paddingTop: matter.spacing.m,
-    paddingBottom: matter.spacing.l,
+    paddingTop: s(15),
+    paddingBottom: s(25),
   },
   card: {
     backgroundColor: Colors.WHITE,
-    borderRadius: matter.radius.lg,
-    padding: matter.spacing.m,
-    marginBottom: matter.spacing.m,
-    shadowColor: "#000",
+    borderRadius: s(12),
+    padding: s(15),
+    marginBottom: s(12),
+    shadowColor: Colors.TEXT,
     shadowOpacity: 0.08,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
@@ -165,17 +124,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   serviceName: {
-    fontSize: matter.fontSize.sm,
+    fontSize: 15,
     fontWeight: "700",
     color: Colors.TEXT,
   },
   mechanicName: {
-    fontSize: matter.fontSize.s,
+    fontSize: 13,
     color: Colors.TEXT,
     marginTop: 3,
   },
   date: {
-    fontSize: matter.fontSize.s,
+    fontSize: 13,
     color: Colors.DARK_GRAY,
     marginTop: 2,
   },
@@ -183,15 +142,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: matter.spacing.s,
+    marginTop: s(8),
   },
   ratingRow: {
     flexDirection: "row",
   },
   price: {
-    fontSize: matter.fontSize.sm,
+    fontSize: 15,
     fontWeight: "700",
     color: Colors.PRIMARY,
   },
 });
-

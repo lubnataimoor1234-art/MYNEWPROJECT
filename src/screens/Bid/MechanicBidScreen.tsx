@@ -96,10 +96,10 @@
 //         <View style={{ flex: 1 }}>
 //           <Text style={styles.serviceText}>{item.service}</Text>
 
-//           <View style={styles.row}>
-//             <MapPin size={14} color={Colors.TEXT} />
-//             <Text style={styles.locationText}> {item.location}</Text>
-//           </View>
+          // <View style={styles.row}>
+          //   <MapPin size={14} color={Colors.TEXT} />
+          //   <Text style={styles.locationText}> {item.location}</Text>
+          // </View>
 
 //           <View style={styles.row}>
 //             <Star size={14} color={Colors.PRIMARY} />
@@ -302,116 +302,622 @@
 // });
 
 
+
+
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   FlatList,
+//   TouchableOpacity,
+//   StyleSheet,
+//   Image,
+//   Alert,
+
+// } from "react-native";
+// import { moderateScale, verticalScale } from "react-native-size-matters";
+// import { useTranslation } from "react-i18next";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import MainHeader from "../../components/MainHeader";
+// import Colors from "../../utils/Colors.utils";
+// import mechanics from "../../DATA/MechanicData";
+// import { MapPin } from "lucide-react-native";
+
+// const MechanicBidScreen = () => {
+//   const { t } = useTranslation();
+//   const [search, setSearch] = useState("");
+
+//   const handleAcceptBid = (mechanic: { name: string; price: number }) => {
+//     Alert.alert(
+//       t("bidAcceptedTitle"),
+//       t("bidAcceptedMessage", {
+//         mechanicName: mechanic.name,
+//         price: mechanic.price,
+//       }),
+//       [{ text: t("ok") }]
+//     );
+//   };
+
+//   const filteredMechanics = mechanics.filter((m) =>
+//     m.name.toLowerCase().includes(search.toLowerCase())
+//   );
+
+//   return (
+//     <ScreenWrapper
+//       header={<MainHeader title={t("mechanicBids")} showBell  />}
+//     >
+    
+//       <FlatList
+//         data={filteredMechanics}
+//         keyExtractor={(item) => item.id.toString()}
+//         showsVerticalScrollIndicator={false}
+//         renderItem={({ item }) => (
+//           <View style={styles.card}>
+//             <View style={styles.row}>
+//               <View style={styles.leftRow}>
+//                 <Image source={{ uri: item.image }} style={styles.image} />
+//                 <View>
+//               <Text style={[
+//                       styles.status,
+//                       { color: item.online ? Colors.YELLOW : Colors.BORDER_GREY,
+//                       },
+//                     ]}
+//                   >
+//                     {item.online ? t("online") : t("offline")}
+//                   </Text>
+//                   <Text style={styles.name}>{item.name}</Text>
+//                   <Text style={styles.service}>{t(item.service)}</Text>
+//                     <View style={styles.row}>
+//             <MapPin size={14} color={Colors.TEXT} />
+//             <Text style={styles.location}> {item.location}</Text>
+//           </View> 
+//           <Text style={styles.rating}> ⭐ {t("rating")}: {item.rating} </Text>
+        
+//                 </View>
+//               </View>
+
+//         <View style={styles.rightSection}>
+//           <Text style={styles.price}>${item.price}</Text>
+//           <TouchableOpacity
+//                   style={styles.button}
+//                   onPress={() => handleAcceptBid(item)}
+//                 >
+//                   <Text style={styles.buttonText}>{t("acceptBid")}</Text>
+//                 </TouchableOpacity>
+//               </View>
+//             </View>
+//           </View>
+//         )}
+//       />
+//     </ScreenWrapper>
+//   );
+// };
+
+// export default MechanicBidScreen;
+
+// const styles = StyleSheet.create({
+
+//   card: {
+//     backgroundColor: Colors.WHITE,
+//     borderRadius: moderateScale(12),
+//     padding: moderateScale(12),
+//     marginHorizontal: moderateScale(10),
+//     marginBottom: verticalScale(10),
+//     shadowColor: "#000",
+//     shadowOpacity: 0.1,
+//     shadowRadius: 4,
+//     elevation: 3,
+//     marginTop: 20, 
+//   },
+//   row: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//   },
+//   leftRow: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//   },
+//   image: {
+//     width: moderateScale(55),
+//     height: moderateScale(55),
+//     borderRadius: moderateScale(30),
+//     marginRight: moderateScale(10),
+//   },
+//   name: {
+//     fontSize: moderateScale(15),
+//     fontWeight: "bold",
+//     color: Colors.TEXT,
+//   },
+//   service: {
+//     fontSize: moderateScale(12),
+//     color: Colors.DARK_GRAY,
+//     marginTop: verticalScale(2),
+//   }, 
+//    location: {
+//     fontSize: moderateScale(12),
+//     color: Colors.BORDER_GREY,
+//     marginTop: verticalScale(2),
+//   },
+
+//   rating: {
+//     fontSize: moderateScale(12),
+//     color: Colors.PRIMARY,
+//     marginTop: verticalScale(2),
+//   },
+//   status: {
+//     shadowColor: Colors.DARK_GRAY,
+//     fontSize: moderateScale(12),
+//     marginTop: verticalScale(2),
+//   },
+//   rightSection: {
+//     alignItems: "flex-end",
+//     justifyContent: "space-between",
+//   },
+//   price: {
+//     fontSize: moderateScale(14),
+//     fontWeight: "600",
+//     color: Colors.PRIMARY,
+//     marginBottom: verticalScale(8),
+//   },
+//   button: {
+//     backgroundColor: Colors.PRIMARY,
+//     paddingVertical: verticalScale(5),
+//     paddingHorizontal: moderateScale(14),
+//     borderRadius: moderateScale(8),
+//   },
+//   buttonText: {
+//     color: Colors.WHITE,
+//     fontSize: moderateScale(12),
+//     fontWeight: "600",
+//   },
+// });
+
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   FlatList,
+//   TouchableOpacity,
+//   StyleSheet,
+//   Image,
+//   Alert,
+// } from "react-native";
+// import { moderateScale, verticalScale } from "react-native-size-matters";
+// import { useTranslation } from "react-i18next";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import MainHeader from "../../components/MainHeader";
+// import Colors from "../../utils/Colors.utils";
+// import mechanics from "../../DATA/MechanicData";
+// import { MapPin } from "lucide-react-native";
+// import { useNavigation } from "@react-navigation/native";
+// const MechanicBidScreen = () => {
+//   const { t } = useTranslation();
+//   const [search, setSearch] = useState("");
+//   const navigation = useNavigation<any>();
+
+//   const handleAcceptBid = (mechanic: { name: string; price: number}) => {
+//     Alert.alert(
+//       t("bidAcceptedTitle"),
+//       t("bidAcceptedMessage", {
+//         mechanicName: mechanic.name,
+//         price: mechanic.price, 
+//       }),
+//       [
+//         {
+//           text: t("ok"),
+//           onPress: () =>
+//             navigation.navigate("BookingScreen", {
+//               mechanicName: mechanic.name,
+//               price: mechanic.price,
+//             }),
+//         },
+//       ]
+//     );
+//   };
+ 
+//   const filteredMechanics = mechanics.filter((m) =>
+//     m.name.toLowerCase().includes(search.toLowerCase())
+//   );
+//   return (
+//     <ScreenWrapper
+//       header={<MainHeader title={t("mechanicBids")} showBell />} >
+//       <FlatList
+//         data={filteredMechanics}
+//         keyExtractor={(item) => item.id.toString()}
+//         showsVerticalScrollIndicator={false}
+//         renderItem={({ item }) => (
+//           <View style={styles.card}>
+//             <View style={styles.row}>
+//               <View style={styles.leftRow}>
+//                 <Image source={{ uri: item.image }} style={styles.image} />
+//                 <View>
+//                   <Text style={[ styles.status,
+//                       {
+//                         color: item.online
+//                           ? Colors.YELLOW
+//                           : Colors.BORDER_GREY,
+//                       },
+//                     ]}
+//                   >
+//                     {item.online ? t("online") : t("offline")}
+//                   </Text>
+
+//                   <Text style={styles.name}>{item.name}</Text>
+//                   <Text style={styles.service}>{t(item.service)}</Text>
+
+//                    {/* <View style={styles.row}>
+//                     <MapPin size={14} color={Colors.TEXT} />
+//                     <Text style={styles.location}> {item.location}</Text>
+//                   </View>  */}
+
+//                   <Text style={styles.rating}>
+//                     ⭐ {t("rating")}: {item.rating}
+//                   </Text>
+//                 </View>
+//               </View>
+
+//               <View style={styles.rightSection}>
+//                 <Text style={styles.price}>${item.price}</Text>
+//                 <TouchableOpacity
+//                   style={styles.button}
+//                   onPress={() => handleAcceptBid(item)}
+//                 >
+//                   <Text style={styles.buttonText}>{t("acceptBid")}</Text>
+//                 </TouchableOpacity>
+//               </View>
+//             </View>
+//           </View>
+//         )}
+//       />
+//     </ScreenWrapper>
+//   );
+// };
+
+// export default MechanicBidScreen;
+
+// const styles = StyleSheet.create({
+//   card: {
+//     backgroundColor: Colors.WHITE,
+//     borderRadius: moderateScale(12),
+//     padding: moderateScale(12),
+//     marginHorizontal: moderateScale(10),
+//     marginBottom: verticalScale(10),
+//     shadowColor: Colors.TEXT,
+//     shadowOpacity: 0.1,
+//     shadowRadius: 4,
+//     elevation: 3,
+//     marginTop: 20,
+//   },
+//   row: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//   },
+//   leftRow: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//   },
+//   image: {
+//     width: moderateScale(55),
+//     height: moderateScale(55),
+//     borderRadius: moderateScale(30),
+//     marginRight: moderateScale(10),
+//   },
+//   name: {
+//     fontSize: moderateScale(15),
+//     fontWeight: "bold",
+//     color: Colors.TEXT,
+//   },
+//   service: {
+//     fontSize: moderateScale(12),
+//     color: Colors.DARK_GRAY,
+//     marginTop: verticalScale(2),
+//   },
+//   location: {
+//     fontSize: moderateScale(12),
+//     color: Colors.BORDER_GREY,
+//     marginTop: verticalScale(2),
+//   },
+//   rating: {
+//     fontSize: moderateScale(12),
+//     color: Colors.PRIMARY,
+//     marginTop: verticalScale(2),
+//   },
+//   status: {
+//     shadowColor: Colors.DARK_GRAY,
+//     fontSize: moderateScale(12),
+//     marginTop: verticalScale(2),
+//   },
+//   rightSection: {
+//     alignItems: "flex-end",
+//     justifyContent: "space-between",
+//   },
+//   price: {
+//     fontSize: moderateScale(14),
+//     fontWeight: "600",
+//     color: Colors.PRIMARY,
+//     marginBottom: verticalScale(8),
+//   },
+//   button: {
+//     backgroundColor: Colors.PRIMARY,
+//     paddingVertical: verticalScale(5),
+//     paddingHorizontal: moderateScale(14),
+//     borderRadius: moderateScale(8),
+//   },
+//   buttonText: {
+//     color: Colors.WHITE,
+//     fontSize: moderateScale(12),
+//     fontWeight: "600",
+//   },
+// });
+
+
+
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   FlatList,
+//   StyleSheet,
+//   Image,
+//   Alert,
+// } from "react-native";
+// import { moderateScale, verticalScale } from "react-native-size-matters";
+// import { useTranslation } from "react-i18next";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import MainHeader from "../../components/MainHeader";
+// import Colors from "../../utils/Colors.utils";
+// import mechanics from "../../DATA/MechanicData";
+// import { MapPin } from "lucide-react-native";
+// import { useNavigation } from "@react-navigation/native";
+// import AppButton from "../../components/AppButton";
+
+// const MechanicBidScreen = () => {
+//   const { t } = useTranslation();
+//   const [search, setSearch] = useState("");
+//   const navigation = useNavigation<any>();
+
+//   const handleAcceptBid = (mechanic: {
+//     name: string;
+//     price: number;
+//     rating: number;
+//     service: string;
+//   }) => {
+//     Alert.alert(
+//       t("bidAcceptedTitle"),
+//       t("bidAcceptedMessage", {
+//         mechanicName: mechanic.name,
+//         price: mechanic.price,
+//       }),
+//       [
+//         {
+//           text: t("ok"),
+//           onPress: () =>
+//             navigation.navigate("BookingScreen", {
+//               mechanicName: mechanic.name,
+//               price: mechanic.price,
+//               rating: mechanic.rating,
+//               service: mechanic.service,
+//             }),
+//         },
+//       ]
+//     );
+//   };
+
+//   const filteredMechanics = mechanics.filter((m) =>
+//     m.name.toLowerCase().includes(search.toLowerCase())
+//   );
+
+//   return (
+//     <ScreenWrapper header={<MainHeader title={t("mechanicBids")} showBell />}>
+//       <FlatList
+//         data={filteredMechanics}
+//         keyExtractor={(item) => item.id.toString()}
+//         showsVerticalScrollIndicator={false}
+//         renderItem={({ item }) => (
+//           <View style={styles.card}>
+//             <View style={styles.row}>
+              
+//               <View style={styles.leftRow}>
+//                 <Image source={{ uri: item.image }} style={styles.image} />
+//                 <View>
+//                   <Text
+//                     style={[
+//                       styles.status,
+//                       {
+//                         color: item.online
+//                           ? Colors.YELLOW
+//                           : Colors.BORDER_GREY,
+//                       },
+//                     ]}
+//                   >
+//                     {item.online ? t("online") : t("offline")}
+//                   </Text>
+
+//                   <Text style={styles.name}>{item.name}</Text>
+//                   <Text style={styles.service}>{t(item.service)}</Text>
+
+//                   <View style={styles.locationRow}>
+//                     <MapPin size={14} color={Colors.TEXT} />
+//                     <Text style={styles.location}>{item.location}</Text>
+//                   </View>
+
+//                   <Text style={styles.rating}>
+//                     ⭐ {t("rating")}: {item.rating}
+//                   </Text>
+//                 </View>
+//               </View>
+//               <View style={styles.rightSection}>
+//                 <Text style={styles.price}>${item.price}</Text>
+
+//                 <AppButton
+//                   title={t("acceptBid")}
+//                   onPress={() => handleAcceptBid(item)}
+//                   style={styles.appButton}
+                 
+//                 />
+//               </View>
+//             </View>
+//           </View>
+//         )}
+//       />
+//     </ScreenWrapper>
+//   );
+// };
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
+import * as Yup from "yup";
+
 import ScreenWrapper from "../../components/ScreenWrapper";
 import MainHeader from "../../components/MainHeader";
-import i18n from "../../utils/i18n.utils";
+import AppButton from "../../components/AppButton";
 import Colors from "../../utils/Colors.utils";
-import mechanics  from "../../DATA/MechanicData";
+import mechanics from "../../DATA/MechanicData";
+import { MapPin } from "lucide-react-native";
+//import API from "../../utils/ApiConfig";
+
+const mechanicSchema = Yup.object().shape({
+  id: Yup.string().required(),
+  name: Yup.string().required(),
+  price: Yup.number().required().positive(),
+  rating: Yup.number().required(),
+  service: Yup.string().required(),
+  online: Yup.boolean().required(),
+});
 
 const MechanicBidScreen = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
-
-  const handleAcceptBid = (mechanics: { name: string; price: number }) => {
-    Alert.alert(
-      t("bidAcceptedTitle"),
-      t("bidAcceptedMessage", {
-        mechanicName: mechanics.name,
-        price: mechanics.price,
-      }),
-      [{ text: t("ok") }]
-    );
-  };
+  const navigation = useNavigation<any>();
 
   const filteredMechanics = mechanics.filter((m) =>
-  m.name.toLowerCase().includes(search.toLowerCase())
-);
+    m.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleAcceptBid = async (mechanic: any) => {
+    try {
+      await mechanicSchema.validate(mechanic);
+      navigation.navigate("BookingScreen", {
+        mechanicName: mechanic.name,
+        price: mechanic.price,
+        rating: mechanic.rating,
+        service: mechanic.service,
+        id: mechanic.id,
+      });
+    } catch (error) {
+      console.warn("Invalid mechanic data:", error);
+      // show toast/snackbar instead of Alert if you want
+    }
+  };
 
   return (
-    <ScreenWrapper
-      header={<MainHeader title={i18n.t("Mechanic Bids")} showBell showBack />}
-    >
-        <FlatList
-          data={filteredMechanics}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <View style={styles.row}>
-                <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.price}>${item.price}</Text>
-                  <Text
-                    style={[
-                      styles.status,
-                      { color: item.status === "online" ? Colors.DARK_GRAY : Colors.TEXT },
-                    ]}
-                  >
-                    {item.status === "online" ? t("online") : t("offline")}
-                  </Text>
+    <ScreenWrapper header={<MainHeader title={t("mechanicBids")} showBell />}>
+      <FlatList
+        data={filteredMechanics}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.card}>
+            <View style={styles.leftRow}>
+              <Image source={{ uri: item.image }} style={styles.image} />
+              <View>
+                <Text style={[styles.status, { color: item.online ? Colors.YELLOW : Colors.BORDER_GREY }]}>
+                  {item.online ? t("online") : t("offline")}
+                </Text>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.service}>{t(item.service)}</Text>
+                <View style={styles.locationRow}>
+                  <MapPin size={14} color={Colors.TEXT} />
+                  <Text style={styles.location}>{item.location}</Text>
                 </View>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => handleAcceptBid(item)}
-                >
-                  <Text style={styles.buttonText}>{t("acceptBid")}</Text>
-                </TouchableOpacity>
+                <Text style={styles.rating}>⭐ {t("rating")}: {item.rating}</Text>
               </View>
             </View>
-          )}
-          showsVerticalScrollIndicator={false}
-        />
+
+            <View style={styles.rightSection}>
+              <Text style={styles.price}>${item.price}</Text>
+              <AppButton title={t("acceptBid")} onPress={() => handleAcceptBid(item)} />
+            </View>
+          </View>
+        )}
+      />
     </ScreenWrapper>
   );
 };
-
 export default MechanicBidScreen;
 
 const styles = StyleSheet.create({
-  
   card: {
     backgroundColor: Colors.WHITE,
     borderRadius: moderateScale(12),
-    padding: moderateScale(15),
-    marginVertical: verticalScale(8),
-    shadowColor: "#000",
+    padding: moderateScale(12),
+    shadowColor: Colors.TEXT,
     shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 2,
+    shadowRadius: 4,
+    elevation: 3,
+    marginTop: 30,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  leftRow: {
+    flexDirection: "row",
     alignItems: "center",
+  },
+  image: {
+    width: moderateScale(55),
+    height: moderateScale(55),
+    borderRadius: moderateScale(30),
+    marginRight: moderateScale(10),
   },
   name: {
     fontSize: moderateScale(15),
     fontWeight: "bold",
     color: Colors.TEXT,
   },
-  price: {
-    fontSize: moderateScale(13),
+  service: {
+    fontSize: moderateScale(12),
+    color: Colors.TEXT,
+    marginTop: verticalScale(2),
+  },
+  locationRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: verticalScale(3),
+  },
+  location: {
+    fontSize: moderateScale(12),
+    color: Colors.DARK_GRAY,
+    marginLeft: moderateScale(4),
+  },
+  rating: {
+    fontSize: moderateScale(12),
     color: Colors.PRIMARY,
-    marginTop: verticalScale(4),
+    marginTop: verticalScale(2),
   },
   status: {
-    marginTop: verticalScale(4),
+    shadowColor: Colors.DARK_GRAY,
     fontSize: moderateScale(12),
+    marginTop: verticalScale(2),
   },
-  button: {
-    backgroundColor: Colors.PRIMARY,
-    paddingVertical: verticalScale(6),
-    paddingHorizontal: moderateScale(14),
+  rightSection: {
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+  },
+  price: {
+    fontSize: moderateScale(14),
+    fontWeight: "600",
+    color: Colors.PRIMARY,
+    marginBottom: verticalScale(8),
+  },
+  appButton: {
+    paddingVertical: verticalScale(5),
+    paddingHorizontal: moderateScale(8),
     borderRadius: moderateScale(8),
   },
-  buttonText: {
-    color: Colors.WHITE,
+  appButtonText: {
     fontSize: moderateScale(12),
-    fontWeight: "600",
   },
 });
-
-

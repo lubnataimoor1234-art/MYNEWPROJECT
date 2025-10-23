@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react-native";
 import matter from "../../utils/matter.utils";
 import strings from "../../utils/strings.utils";
 import AppButton from "../../components/AppButton";
-const BikeScreen = () => {
+const BikeHome = () => {
   const navigation = useNavigation();
   
 
@@ -150,4 +150,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BikeScreen;
+export default BikeHome;

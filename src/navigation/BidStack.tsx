@@ -1,14 +1,14 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MechanicBidScreen from "../screens/Bid/MechanicBidScreen";
-//import BookingsScreen from "../screens/Bid/BookingsScreen";
+import BookingScreen from "../screens/Bid/BookingScreen";
 // import TrackMechanicScreen from "../screens/Bid/TrackMechanicScreen";
 import Colors from "../utils/Colors.utils";
 
 // ✅ Define type for stack navigation routes
 export type BidStackParamList = {
   MechanicBid: undefined;
-  BookingsScreen: undefined;
+  BookingScreen: undefined;
   // TrackMechanic: undefined;
 };
 
@@ -24,7 +24,7 @@ const BidStack = () => {
       }}
     >
       <Stack.Screen name="MechanicBid" component={MechanicBidScreen} />
-      {/* <Stack.Screen name="BookingsScreen" component={BookingsScreen} /> */}
+      <Stack.Screen name="BookingScreen" component={BookingScreen} /> 
       {/* <Stack.Screen name="TrackMechanic" component={TrackMechanicScreen} /> */}
     </Stack.Navigator>
   );
