@@ -116,6 +116,7 @@
 // });
 
 // export default SignIn;
+
 import React, { useState } from "react";
 import {
   View,
@@ -123,8 +124,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { setIsLoggedIn, setToken } from "../../../store/reducers/auth-persist.reducer";
+import { supabase } from "../../../utils/supabaseClient";
 import Colors from "../../../utils/Colors.utils";
 import InputField from "../../../components/InputField";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react-native";
@@ -134,36 +139,60 @@ import { useNavigation } from "@react-navigation/native";
 
 const SignIn = () => {
   const navigation = useNavigation<any>();
+  const dispatch = useDispatch();
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const handleSignIn = async () => {
-  await AsyncStorage.setItem("userToken", "abc123");
-  // 🔁 Restart navigation
-  navigation.reset({
-    index: 0,
-    routes: [{ name: "Home" }], // or use a global auth context
-  });
-};
+    if (!email || !password) {
+      Alert.alert("Error", "Please fill in all fields");
+      return;
+    }
 
-  // const handleSignIn = async () => {
-  //   if (!emailOrPhone || !password) {
-  //     Alert.alert("Error", "Please fill in all fields");
-  //     return;
-  //   }
+    setLoading(true);
+    try {
+      // 🔹 Supabase Sign In
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password: password.trim(),
+      });
 
-  //   try {
-  //     await AsyncStorage.removeItem("userToken");
-  //     // await AsyncStorage.setItem("userToken", "123");
-  //     Alert.alert("Success", "Logged in successfully");
-  //     navigation.reset({
-  //       index: 0,
-  //       routes: [{ name: "Home" }], 
-  //     });
-  //   } catch (error) {
-  //     Alert.alert("Error", "Something went wrong");
-  //   }
-  // };
+      if (error) {
+        Alert.alert("Login failed", error.message);
+        setLoading(false);
+        return;
+      }
+
+      if (data?.session) {
+        const token = data.session.access_token;
+
+        // ✅ Store token locally for persistence
+        await AsyncStorage.setItem("userToken", token);
+
+        // ✅ Save to Redux
+        dispatch(setIsLoggedIn(true));
+        dispatch(setToken(token));
+
+        Alert.alert("Success", "Logged in successfully!");
+
+        // ✅ Navigate to home
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        });
+      } else {
+        Alert.alert("Error", "No active session found.");
+      }
+    } catch (err) {
+      console.error(err);
+      Alert.alert("Error", "Something went wrong during sign in.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ScreenWrapper contentStyle={styles.container}>
       <View style={styles.header}>
@@ -179,10 +208,10 @@ const SignIn = () => {
       </Text>
 
       <InputField
-        label="Email or Phone Number"
-        placeholder="Enter your email or phone"
-        value={emailOrPhone}
-        onChangeText={setEmailOrPhone}
+        label="Email"
+        placeholder="Enter your email"
+        value={email}
+        onChangeText={setEmail}
       />
 
       <InputField
@@ -208,8 +237,16 @@ const SignIn = () => {
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
-        <Text style={styles.signInText}>Sign in</Text>
+      <TouchableOpacity
+        style={styles.signInButton}
+        onPress={handleSignIn}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.signInText}>Sign in</Text>
+        )}
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -217,7 +254,8 @@ const SignIn = () => {
         onPress={() => navigation.navigate("SignUp")}
       >
         <Text style={styles.signUpText}>
-          Don’t have an account? <Text style={{ color: Colors.PRIMARY }}>Sign up</Text>
+          Don’t have an account?{" "}
+          <Text style={{ color: Colors.PRIMARY }}>Sign up</Text>
         </Text>
       </TouchableOpacity>
     </ScreenWrapper>
@@ -226,7 +264,11 @@ const SignIn = () => {
 
 const styles = StyleSheet.create({
   container: { paddingVertical: verticalScale(30) },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   helpText: { fontSize: moderateScale(14), color: Colors.DARK_GRAY },
   title: {
     fontSize: moderateScale(28),

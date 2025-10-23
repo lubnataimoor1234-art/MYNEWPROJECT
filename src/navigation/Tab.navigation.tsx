@@ -14,6 +14,7 @@ import HistoryScreen from "../screens/History/HistoryScreen";
 import { HomeTab } from "../assets/pngs";
 import Colors from "../utils/Colors.utils";
 import AuthProfileStack from "./AuthProfileStack";
+import Home from "../screens/Home/ServiceProviderScreen";
 type MainTabsParamList = {
   auth:undefined;
   Home: undefined;
@@ -40,7 +41,7 @@ const MainTabs = () => {
     >
       <Tab.Screen
         name="Home"
-        component={AuthHomeStack}
+        component={Home}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (

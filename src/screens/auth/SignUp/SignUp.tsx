@@ -14,7 +14,7 @@
 // import { useNavigation } from '@react-navigation/native';
 // const SignUp = () => {
 //   const navigation = useNavigation<any>();
-  
+
 //   const [name, setName] = useState('');
 //   const [email, setEmail] = useState('');
 //   const [phone, setPhone] = useState('');
@@ -22,7 +22,7 @@
 //   const [confirmPassword, setConfirmPassword] = useState('');
 //   const [passwordVisible, setPasswordVisible] = useState(false);
 //   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  
+
 //   const handleSignup = () => {
 //     navigation.navigate('SignIn');
 //   }
@@ -159,6 +159,7 @@
 // });
 
 // export default SignUp;
+
 import React, { useState } from "react";
 import {
   View,
@@ -174,16 +175,19 @@ import ScreenWrapper from "../../../components/ScreenWrapper";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react-native";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import { useNavigation } from "@react-navigation/native";
+import { supabase } from "../../../utils/supabaseClient";
 
 const SignUp = () => {
   const navigation = useNavigation<any>();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [role, setRole] = useState<"user" | "mechanic">("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSignup = async () => {
     if (!name || !email || !phone || !password || !confirmPassword) {
@@ -196,16 +200,62 @@ const SignUp = () => {
     }
 
     try {
-      // Fake signup -> store token
-     // const fakeToken = "new_user_token_123";
-      await AsyncStorage.setItem("userToken", "123" );
-      Alert.alert("Success", "Account created successfully!");
+      setLoading(true);
+
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (signUpError) {
+        setLoading(false);
+        console.error(signUpError);
+        Alert.alert("Signup Error", signUpError.message);
+        return;
+      }
+
+      const user = data?.user;
+      if (!user) {
+        setLoading(false);
+        Alert.alert("Error", "User not created. Try again.");
+        return;
+      }
+
+      const { error: profileError } = await supabase
+        .from("User")
+        .insert([
+          {
+            id: user.id,
+            email,
+            name,
+            phone,
+            role,
+          },
+        ]);
+
+      if (profileError) {
+        setLoading(false);
+        console.error(profileError);
+        Alert.alert("Profile Error", profileError.message);
+        return;
+      }
+
+      await AsyncStorage.setItem("userId", user.id);
+
+      setLoading(false);
+      Alert.alert(
+        "Success",
+        "Account created successfully! Please verify your email."
+      );
+
       navigation.reset({
         index: 0,
-        routes: [{ name: "Home" }],
+        routes: [{ name: "SignIn" }],
       });
-    } catch (error) {
-      Alert.alert("Error", "Something went wrong");
+    } catch (err) {
+      console.error(err);
+      Alert.alert("Error", "Something went wrong. Try again.");
+      setLoading(false);
     }
   };
 
@@ -219,34 +269,75 @@ const SignUp = () => {
       </View>
 
       <Text style={styles.title}>Sign up</Text>
-      <Text style={styles.subTitle}>
-        Fill out the form to continue sign up...
-      </Text>
+      <Text style={styles.subTitle}>Fill out the form to continue sign up...</Text>
 
       <InputField label="Name" placeholder="John Doe" value={name} onChangeText={setName} />
-      <InputField label="Email" placeholder="abc@gmail.com" value={email} onChangeText={setEmail} />
+      <InputField label="Email" placeholder="abc@gmail.com" value={email} onChangeText={setEmail} keyboardType="email-address" />
       <InputField label="Phone" placeholder="123-456-789" value={phone} onChangeText={setPhone} keyboardType="phone-pad" />
+
+      <View style={styles.roleContainer}>
+        <TouchableOpacity
+          style={[styles.roleButton, role === "user" && styles.activeRoleButton]}
+          onPress={() => setRole("user")}
+        >
+          <Text style={[styles.roleText, role === "user" && styles.activeRoleText]}>
+            User
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.roleButton, role === "mechanic" && styles.activeRoleButton]}
+          onPress={() => setRole("mechanic")}
+        >
+          <Text style={[styles.roleText, role === "mechanic" && styles.activeRoleText]}>
+            Mechanic
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Password Fields */}
       <InputField
         label="Password"
         placeholder="Enter Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry={!passwordVisible}
-        rightIcon={passwordVisible ? <Eye size={20} color={Colors.DARK_GRAY} /> : <EyeOff size={20} color={Colors.DARK_GRAY} />}
+        rightIcon={
+          passwordVisible ? (
+            <Eye size={20} color={Colors.DARK_GRAY} />
+          ) : (
+            <EyeOff size={20} color={Colors.DARK_GRAY} />
+          )
+        }
         onRightIconPress={() => setPasswordVisible(!passwordVisible)}
       />
+
       <InputField
         label="Confirm Password"
         placeholder="Re-enter Password"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry={!confirmPasswordVisible}
-        rightIcon={confirmPasswordVisible ? <Eye size={20} color={Colors.DARK_GRAY} /> : <EyeOff size={20} color={Colors.DARK_GRAY} />}
-        onRightIconPress={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+        rightIcon={
+          confirmPasswordVisible ? (
+            <Eye size={20} color={Colors.DARK_GRAY} />
+          ) : (
+            <EyeOff size={20} color={Colors.DARK_GRAY} />
+          )
+        }
+        onRightIconPress={() =>
+          setConfirmPasswordVisible(!confirmPasswordVisible)
+        }
       />
 
-      <TouchableOpacity style={styles.signUpButton} onPress={handleSignup}>
-        <Text style={styles.signUpText}>Sign up</Text>
+      <TouchableOpacity
+        style={[styles.signUpButton, loading && { opacity: 0.7 }]}
+        onPress={handleSignup}
+        disabled={loading}
+      >
+        <Text style={styles.signUpText}>
+          {loading ? "Signing up..." : "Sign up"}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -254,16 +345,23 @@ const SignUp = () => {
         onPress={() => navigation.navigate("SignIn")}
       >
         <Text style={styles.signInText}>
-          Already have an account? <Text style={{ color: Colors.PRIMARY }}>Sign in</Text>
+          Already have an account?{" "}
+          <Text style={{ color: Colors.PRIMARY }}>Sign in</Text>
         </Text>
       </TouchableOpacity>
     </ScreenWrapper>
   );
 };
 
+export default SignUp;
+
 const styles = StyleSheet.create({
   container: { paddingVertical: verticalScale(30) },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   helpText: { fontSize: moderateScale(14), color: Colors.DARK_GRAY },
   title: {
     fontSize: moderateScale(28),
@@ -276,15 +374,48 @@ const styles = StyleSheet.create({
     color: Colors.DARK_GRAY,
     marginBottom: verticalScale(20),
   },
+  roleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginVertical: verticalScale(15),
+  },
+  roleButton: {
+    borderWidth: 1,
+    borderColor: Colors.DARK_GRAY,
+    borderRadius: moderateScale(8),
+    paddingVertical: verticalScale(8),
+    paddingHorizontal: moderateScale(20),
+  },
+  activeRoleButton: {
+    backgroundColor: Colors.PRIMARY,
+    borderColor: Colors.PRIMARY,
+  },
+  roleText: {
+    fontSize: moderateScale(14),
+    color: Colors.DARK_GRAY
+  },
+  activeRoleText: {
+    color: Colors.WHITE,
+    fontWeight: "600"
+  },
   signUpButton: {
     backgroundColor: Colors.PRIMARY,
     paddingVertical: verticalScale(15),
     borderRadius: moderateScale(12),
     alignItems: "center",
+    marginTop: verticalScale(10),
   },
-  signUpText: { fontSize: moderateScale(16), fontWeight: "600", color: "#fff" },
-  signInLink: { marginTop: verticalScale(20), alignSelf: "center" },
-  signInText: { color: Colors.DARK_GRAY, fontSize: moderateScale(14) },
+  signUpText: {
+    fontSize: moderateScale(16),
+    fontWeight: "600",
+    color: Colors.WHITE,
+  },
+  signInLink: {
+    marginTop: verticalScale(20),
+    alignSelf: "center"
+  },
+  signInText: {
+    color: Colors.DARK_GRAY,
+    fontSize: moderateScale(14)
+  },
 });
-
-export default SignUp;
