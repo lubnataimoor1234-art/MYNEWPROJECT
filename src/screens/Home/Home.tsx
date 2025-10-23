@@ -425,7 +425,6 @@ const HomeScreen = () => {
     <ScreenWrapper
       header={<MainHeader title={i18n.t("appName")} showBell showBack />}
     >
-    
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{i18n.t("popularServices")}</Text>
 
@@ -443,7 +442,7 @@ const HomeScreen = () => {
         </View>
       </View>
 
-      {/* ===== EXCLUSIVE SERVICES ===== */}
+   
       <View style={styles.exclusiveSection}>
         <Text style={styles.sectionTitle}>
           {i18n.t("exclusiveServices") || "Exclusive Services"}
@@ -493,8 +492,8 @@ const styles = StyleSheet.create({
   serviceBox: {
     width: "30%",
     backgroundColor: Colors.WHITE,
-    borderRadius: moderateScale(12),
-    paddingVertical: verticalScale(15),
+    borderRadius: moderateScale(8),
+    paddingVertical: verticalScale(9),
     alignItems: "center",
     marginBottom: verticalScale(12),
     elevation: 2,
@@ -512,7 +511,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   exclusiveSection: {
-    marginTop: verticalScale(20),
+    marginTop: verticalScale(10),
   },
   exclusiveCard: {
     width: moderateScale(260),

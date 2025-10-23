@@ -1,222 +1,3 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Alert,
-} from "react-native";
-//import * as ImagePicker from "expo-image-picker";
-import { Camera, Phone, Mail, Edit3, Info, LogOut, HelpCircle } from "lucide-react-native";
-import Colors from "../../utils/Colors.utils";
-import matter from "../../utils/matter.utils";
-import { useNavigation } from "@react-navigation/native";
-import CustomHeader from "../../components/MainHeader";
-import AppButton from "../../components/AppButton";
-import strings from "../../utils/strings.utils";
-const ProfileScreen = () => {
-  const navigation = useNavigation();
-  
-  const handleLogout = () => {
-    Alert.alert("Logout", "Are you sure you want to logout?", [
-      { text: "Cancel", style: "cancel" },
-      { text: "Logout", onPress: () => console.log("User logged out") },
-    ]);
-  };
-
-  // 📸 Pick image from gallery
-  const pickImage = async () => {
-  //   const permissionResult =
-  //     await ImagePicker.requestMediaLibraryPermissionsAsync();
-  //   if (!permissionResult.granted) {
-  //     Alert.alert("Permission required", "Please allow gallery access!");
-  //     return;
-  //   }
-
-  //   const result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  //     allowsEditing: true,
-  //     aspect: [1, 1],
-  //     quality: 1,
-  //   });
-
-  //   if (!result.canceled) {
-  //     setProfileImage({ uri: result.assets[0].uri });
-  //   }
-   };
-
-  return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Header */}
-        <CustomHeader showBack={true} title="Profile" showProfile={false} />
-
-        {/* Profile Card */}
-        <View style={styles.profileCard}>
-          <View style={styles.imageContainer}>
-            <Image
-            source={{
-              uri: "https://i.pravatar.cc/150?img=12",
-            }}
-            style={styles.profileImage}
-          />
-            <TouchableOpacity style={styles.cameraIcon} onPress={pickImage}>
-              <Camera size={16} color={Colors.WHITE} />
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.name}>James</Text>
-          <Text style={styles.role}>Mechanic Partner</Text>
-
-          <View style={styles.infoContainer}>
-            <View style={styles.infoRow}>
-              <Mail size={20} color={Colors.PRIMARY} />
-              <Text style={styles.infoText}>james8538@email.com</Text>
-            </View>
-            <View style={styles.infoRow}>
-              <Phone size={20} color={Colors.PRIMARY} />
-              <Text style={styles.infoText}>+92 301 2345678</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Options Section */}
-        <View style={styles.optionsCard}>
-          <TouchableOpacity
-            style={styles.optionRow}
-            onPress={() => navigation.navigate("EditProfile" as never)}
-          >
-            <Edit3 size={20} color={Colors.PRIMARY} />
-            <Text style={styles.optionText}>Edit Profile</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.optionRow}>
-            <HelpCircle size={20} color={Colors.PRIMARY} />
-            <Text style={styles.optionText}>Help & Support</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.option}>
-            <Info size={20} color={Colors.PRIMARY} />
-            <Text style={styles.optionText}>About App</Text>
-          </TouchableOpacity>
-        </View>
-
-        
-
-<AppButton
-          title={strings.EditProfile.Btn}
-          onPress={() => navigation.navigate("SingnIn" as never)}
-          type="primary"
-        />
-      </ScrollView>
-    </View>
-  );
-};
-
-export default ProfileScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.BACKGROUND,
-  },
-  scroll: {
-    paddingBottom: matter.spacing.xl,
-  },
-  profileCard: {
-    backgroundColor: Colors.WHITE,
-    marginHorizontal: matter.spacing.l,
-    borderRadius: matter.radius.lg,
-    paddingVertical: matter.spacing.s, 
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-    marginTop: -30,
-  },
-  imageContainer: {
-    position: "relative",
-  },
-  profileImage: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    borderWidth: 2,
-    borderColor: Colors.PRIMARY,
-    marginBottom: matter.spacing.s,
-  },
-  cameraIcon: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    backgroundColor: Colors.PRIMARY,
-    borderRadius: 14,
-    padding: 6,
-    elevation: 3,
-  },
-  name: {
-    fontSize: matter.fontSize.lg,
-    fontWeight: "700",
-    color: Colors.TEXT,
-  },
-  role: {
-    fontSize: matter.fontSize.sm,
-    color: Colors.DARK_GRAY,
-    marginBottom: matter.spacing.m,
-  },
-  infoContainer: {
-    width: "100%",
-    paddingHorizontal: matter.spacing.l,
-    marginTop: matter.spacing.s,
-  },
-  infoRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: matter.spacing.m,
-  },
-  infoText: {
-    fontSize: matter.fontSize.sm,
-    color: Colors.TEXT,
-    marginLeft: matter.spacing.s,
-  },
-  optionsCard: {
-    backgroundColor: Colors.WHITE,
-    marginHorizontal: matter.spacing.m,
-    borderRadius: matter.radius.md,
-    marginTop: matter.spacing.s,
-    paddingVertical: matter.spacing.m,
-    paddingHorizontal: matter.spacing.m,
-    elevation: 2,
-    
-  },
-  optionRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: matter.spacing.m,
-    paddingHorizontal: matter.spacing.m,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.BORDER_GREY,
-     borderRadius: matter.radius.md,
-     marginBottom:8,
-  },
-  option: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: matter.spacing.m,
-    paddingHorizontal: matter.spacing.m,
-    
-  },
-  optionText: {
-    fontSize: matter.fontSize.sm,
-    color: Colors.TEXT,
-    marginLeft: matter.spacing.m,
-  },
-  
-});
-
 
 // import React from "react";
 // import {
@@ -225,41 +6,46 @@ const styles = StyleSheet.create({
 //   StyleSheet,
 //   TouchableOpacity,
 //   Image,
-//   ScrollView,
 //   Alert,
 // } from "react-native";
-// import Colors from "../../utils/colors.utils";
-// import matter from "../../utils/matter.utils";
+// import { Camera, Phone, Mail, Edit3, Info, HelpCircle } from "lucide-react-native";
 // import { useNavigation } from "@react-navigation/native";
-// import { User, Phone, Mail, Edit3, Info, LogOut, HelpCircle } from "lucide-react-native";
-// import CustomHeader from "../../components/CustomHeader";
+// import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+// import Colors from "../../utils/Colors.utils";
+// import MainHeader from "../../components/MainHeader";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import AppButton from "../../components/AppButton";
+// import { useTranslation } from "react-i18next";
 
 // const ProfileScreen = () => {
 //   const navigation = useNavigation();
+//   const { t } = useTranslation();
 
 //   const handleLogout = () => {
-//     Alert.alert("Logout", "Are you sure you want to logout?", [
-//       { text: "Cancel", style: "cancel" },
-//       { text: "Logout", onPress: () => console.log("User logged out") },
+//     Alert.alert(t("logout"), t("logoutConfirm"), [
+//       { text: t("cancel"), style: "cancel" },
+//       { text: t("logout"), onPress: () => console.log("User logged out") },
 //     ]);
 //   };
 
 //   return (
-//     <View style={styles.container}>
-//       <ScrollView contentContainerStyle={styles.scroll}>
-//         {/* Header */}
-//         <CustomHeader showBack={true} title="Profile" showProfile={false} />
-
+//      <ScreenWrapper
+//       header={<MainHeader showBell showBack />}
+//     >
 //         {/* Profile Card */}
 //         <View style={styles.profileCard}>
-//           <Image
-//             source={{
-//               uri: "https://i.pravatar.cc/150?img=12",
-//             }}
-//             style={styles.profileImage}
-//           />
+//           <View style={styles.imageContainer}>
+//             <Image
+//               source={{ uri: "https://i.pravatar.cc/150?img=12" }}
+//               style={styles.profileImage}
+//             />
+//             <TouchableOpacity style={styles.cameraIcon}>
+//               <Camera size={16} color={Colors.WHITE} />
+//             </TouchableOpacity>
+//           </View>
+
 //           <Text style={styles.name}>James</Text>
-//           <Text style={styles.role}>Mechanic Partner</Text>
+//           <Text style={styles.role}>{t("mechanicPartner")}</Text>
 
 //           <View style={styles.infoContainer}>
 //             <View style={styles.infoRow}>
@@ -273,143 +59,464 @@ const styles = StyleSheet.create({
 //           </View>
 //         </View>
 
-//         {/* Options Section */}
+//         {/* Options */}
 //         <View style={styles.optionsCard}>
 //           <TouchableOpacity
-//   style={styles.optionRow}
-//   onPress={() => navigation.navigate("EditProfile" as never)} 
-// >
-//   <Edit3 size={20} color={Colors.PRIMARY} />
-//   <Text style={styles.optionText}>Edit Profile</Text>
-// </TouchableOpacity>
+//             style={styles.optionRow}
+//             onPress={() => navigation.navigate("EditProfile" as never)}
+//           >
+//             <Edit3 size={20} color={Colors.PRIMARY} />
+//             <Text style={styles.optionText}>{t("editProfile")}</Text>
+//           </TouchableOpacity>
 
 //           <TouchableOpacity style={styles.optionRow}>
 //             <HelpCircle size={20} color={Colors.PRIMARY} />
-//             <Text style={styles.optionText}>Help & Support</Text>
+//             <Text style={styles.optionText}>{t("helpSupport")}</Text>
 //           </TouchableOpacity>
 
 //           <TouchableOpacity style={styles.option}>
 //             <Info size={20} color={Colors.PRIMARY} />
-//             <Text style={styles.optionText}>About App</Text>
+//             <Text style={styles.optionText}>{t("aboutApp")}</Text>
 //           </TouchableOpacity>
 //         </View>
 
 //         {/* Logout Button */}
-//         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-//           <LogOut size={20} color={Colors.WHITE} />
-//           <Text style={styles.logoutText}>Logout</Text>
-//         </TouchableOpacity>
-//       </ScrollView>
-//     </View>
+//         <AppButton title={t("logout")} onPress={handleLogout} type="primary" />
+    
+//     </ScreenWrapper>
 //   );
 // };
 
 // export default ProfileScreen;
 
 // const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: Colors.BACKGROUND,
-//   },
-//   scroll: {
-//     paddingBottom: matter.spacing.xl,
-//   },
+ 
 //   profileCard: {
 //     backgroundColor: Colors.WHITE,
-//     marginHorizontal: matter.spacing.l,
-//     borderRadius: matter.radius.lg,
-//     paddingVertical: matter.spacing.xl,
+//     marginHorizontal: scale(16),
+//     borderRadius: scale(16),
+//     paddingVertical: verticalScale(20),
 //     alignItems: "center",
-//     shadowColor: "#000",
+//     shadowColor: Colors.TEXT,
 //     shadowOpacity: 0.1,
 //     shadowRadius: 6,
-//     elevation: 4,
-//     marginTop: -40,
+//     elevation: 3,
+//     marginTop: verticalScale(30),
+//   },
+//   imageContainer: {
+//     position: "relative",
 //   },
 //   profileImage: {
-//     width: 100,
-//     height: 100,
-//     borderRadius: 60,
-//     borderWidth: 3,
+//     width: scale(90),
+//     height: scale(90),
+//     borderRadius: scale(45),
+//     borderWidth: 2,
 //     borderColor: Colors.PRIMARY,
-//     marginBottom: matter.spacing.m,
+//     marginBottom: verticalScale(10),
+//   },
+//   cameraIcon: {
+//     position: "absolute",
+//     bottom: 0,
+//     right: 0,
+//     backgroundColor: Colors.PRIMARY,
+//     borderRadius: scale(14),
+//     padding: scale(6),
+//     elevation: 3,
 //   },
 //   name: {
-//     fontSize: matter.fontSize.lg,
+//     fontSize: moderateScale(18),
 //     fontWeight: "700",
 //     color: Colors.TEXT,
 //   },
 //   role: {
-//     fontSize: matter.fontSize.sm,
+//     fontSize: moderateScale(13),
 //     color: Colors.DARK_GRAY,
-//     marginBottom: matter.spacing.m,
+//     marginBottom: verticalScale(10),
 //   },
 //   infoContainer: {
 //     width: "100%",
-//     paddingHorizontal: matter.spacing.l,
-//     marginTop: matter.spacing.s,
+//     paddingHorizontal: scale(20),
+//     marginTop: verticalScale(10),
 //   },
 //   infoRow: {
 //     flexDirection: "row",
 //     alignItems: "center",
-//     marginBottom: matter.spacing.m,
+//     marginBottom: verticalScale(10),
 //   },
 //   infoText: {
-//     fontSize: matter.fontSize.md,
+//     fontSize: moderateScale(13),
 //     color: Colors.TEXT,
-//     marginLeft: matter.spacing.s,
+//     marginLeft: scale(8),
 //   },
 //   optionsCard: {
-//   backgroundColor: Colors.WHITE,
-//   marginHorizontal: matter.spacing.m, // reduced horizontal margin
-//   borderRadius: matter.radius.md,     // slightly smaller corner radius
-//   marginTop: matter.spacing.s,       // less top margin
-//   paddingVertical: matter.spacing.m,  // reduced vertical padding
-//   paddingHorizontal: matter.spacing.m, // optional: add equal spacing inside
-//   elevation: 2,                       // lighter shadow for smaller card
-// },
-
-//   // optionsCard: {
-//   //   backgroundColor: Colors.WHITE,
-//   //   marginHorizontal: matter.spacing.l,
-//   //   borderRadius: matter.radius.lg,
-//   //   marginTop: matter.spacing.s,
-//   //   paddingVertical: matter.spacing.l,
-//   //   elevation: 3,
-//   // },
+//     backgroundColor: Colors.WHITE,
+//     marginHorizontal: scale(14),
+//     borderRadius: scale(10),
+//     marginTop: verticalScale(10),
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
+//     elevation: 2,
+//   },
 //   optionRow: {
 //     flexDirection: "row",
 //     alignItems: "center",
-//     paddingVertical: matter.spacing.m,
-//     paddingHorizontal: matter.spacing.l,
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
 //     borderBottomWidth: 1,
 //     borderBottomColor: Colors.BORDER_GREY,
+//     marginBottom: verticalScale(8),
 //   },
-//    option: {
+//   option: {
 //     flexDirection: "row",
 //     alignItems: "center",
-//     paddingVertical: matter.spacing.m,
-//     paddingHorizontal: matter.spacing.l,
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
 //   },
 //   optionText: {
-//     fontSize: matter.fontSize.md,
+//     fontSize: moderateScale(13),
 //     color: Colors.TEXT,
-//     marginLeft: matter.spacing.m,
-//   },
-//   logoutButton: {
-//     flexDirection: "row",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: Colors.PRIMARY,
-//     marginHorizontal: matter.spacing.l,
-//     borderRadius: matter.radius.lg,
-//     paddingVertical: matter.padding.buttonV,
-//     marginTop: matter.spacing.xl,
-//   },
-//   logoutText: {
-//     color: Colors.WHITE,
-//     fontSize: matter.fontSize.md,
-//     fontWeight: "600",
-//     marginLeft: matter.spacing.s,
+//     marginLeft: scale(10),
 //   },
 // });
+
+
+
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   TouchableOpacity,
+//   Image,
+// } from "react-native";
+// import { Camera, Phone, Mail, Edit3, Info, HelpCircle } from "lucide-react-native";
+// import { useNavigation } from "@react-navigation/native";
+// import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+// import Colors from "../../utils/Colors.utils";
+// import MainHeader from "../../components/MainHeader";
+// import ScreenWrapper from "../../components/ScreenWrapper";
+// import AppButton from "../../components/AppButton";
+// import { useTranslation } from "react-i18next";
+// import * as Yup from "yup";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import i18n from "../../utils/i18n.utils";
+
+// const ProfileScreen = () => {
+//   const navigation = useNavigation();
+//   const { t } = useTranslation();
+//   const [error, setError] = useState("");
+
+//   // ✅ Yup schema for logout confirmation
+//   const logoutSchema = Yup.object().shape({
+//     confirm: Yup.string()
+//       .required(t("logoutConfirm"))
+//       .oneOf(["yes"], t("logoutValidationError")),
+//   });
+
+//   const handleLogout = async () => {
+//     // try {
+//     //   const values = { confirm: "yes" }; 
+//     //   await logoutSchema.validate(values);
+//     //   await AsyncStorage.removeItem("userToken");
+//     //   navigation.reset({
+//     //     index: 0,
+//     //     routes: [{ name: "SignIn" as never }],
+//     //   });
+//     // } catch (err: any) {
+//     //   setError(err.message);
+//     // }
+//   };
+
+//   return (
+//     <ScreenWrapper
+//       header={<MainHeader title={i18n.t("Profile")} showBell showBack />}
+//     >
+//       <View style={styles.profileCard}>
+//         <View style={styles.imageContainer}>
+//           <Image
+//             source={{ uri: "https://i.pravatar.cc/150?img=12" }}
+//             style={styles.profileImage}
+//           />
+//           <TouchableOpacity style={styles.cameraIcon}>
+//             <Camera size={16} color={Colors.WHITE} />
+//           </TouchableOpacity>
+//         </View>
+
+//         <Text style={styles.name}>James</Text>
+//         <Text style={styles.role}>{t("mechanicPartner")}</Text>
+
+//         <View style={styles.infoContainer}>
+//           <View style={styles.infoRow}>
+//             <Mail size={20} color={Colors.PRIMARY} />
+//             <Text style={styles.infoText}>james8538@email.com</Text>
+//           </View>
+//           <View style={styles.infoRow}>
+//             <Phone size={20} color={Colors.PRIMARY} />
+//             <Text style={styles.infoText}>+92 301 2345678</Text>
+//           </View>
+//         </View>
+//       </View>
+
+//       <View style={styles.optionsCard}>
+//         <TouchableOpacity
+//           style={styles.optionRow}
+//           onPress={() => navigation.navigate("EditProfile" as never)}
+//         >
+//           <Edit3 size={20} color={Colors.PRIMARY} />
+//           <Text style={styles.optionText}>{t("editProfile")}</Text>
+//         </TouchableOpacity>
+
+//         <TouchableOpacity style={styles.optionRow}>
+//           <HelpCircle size={20} color={Colors.PRIMARY} />
+//           <Text style={styles.optionText}>{t("helpSupport")}</Text>
+//         </TouchableOpacity>
+
+//         <TouchableOpacity style={styles.option}>
+//           <Info size={20} color={Colors.PRIMARY} />
+//           <Text style={styles.optionText}>{t("aboutApp")}</Text>
+//         </TouchableOpacity>
+//       </View>
+
+
+//       <AppButton title={t("logout")} onPress={handleLogout} type="primary" />
+//       {error ? <Text style={styles.errorText}>{error}</Text> : null}
+//     </ScreenWrapper>
+//   );
+// };
+
+// export default ProfileScreen;
+
+// const styles = StyleSheet.create({
+//   profileCard: {
+//     backgroundColor: Colors.WHITE,
+//     marginHorizontal: scale(16),
+//     borderRadius: scale(16),
+//     paddingVertical: verticalScale(20),
+//     alignItems: "center",
+//     shadowColor: Colors.TEXT,
+//     shadowOpacity: 0.1,
+//     shadowRadius: 6,
+//     elevation: 3,
+//     marginTop: verticalScale(25),
+//   },
+//   imageContainer: {
+//     position: "relative",
+//   },
+//   profileImage: {
+//     width: scale(90),
+//     height: scale(90),
+//     borderRadius: scale(45),
+//     borderWidth: 2,
+//     borderColor: Colors.PRIMARY,
+//     marginBottom: verticalScale(10),
+//   },
+//   cameraIcon: {
+//     position: "absolute",
+//     bottom: 0,
+//     right: 0,
+//     backgroundColor: Colors.PRIMARY,
+//     borderRadius: scale(14),
+//     padding: scale(6),
+//     elevation: 3,
+//   },
+//   name: {
+//     fontSize: moderateScale(20),
+//     fontWeight: "800",
+//     color: Colors.TEXT,
+//   },
+//   role: {
+//     fontSize: moderateScale(15),
+//     color: Colors.DARK_GRAY,
+//     marginBottom: verticalScale(10),
+//   },
+//   infoContainer: {
+//     width: "100%",
+//     paddingHorizontal: scale(20),
+//     marginTop: verticalScale(10),
+//   },
+//   infoRow: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     marginBottom: verticalScale(10),
+//   },
+//   infoText: {
+//     fontSize: moderateScale(15),
+//     color: Colors.TEXT,
+//     marginLeft: scale(8),
+//   },
+//   optionsCard: {
+//     backgroundColor: Colors.WHITE,
+//     marginHorizontal: scale(14),
+//     borderRadius: scale(10),
+//     marginTop: verticalScale(10),
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
+//     elevation: 2,
+//     marginBottom: 15,
+//   },
+//   optionRow: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
+//     borderBottomWidth: 1,
+//     borderBottomColor: Colors.BORDER_GREY,
+//     marginBottom: verticalScale(8),
+//   },
+//   option: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     paddingVertical: verticalScale(10),
+//     paddingHorizontal: scale(10),
+//   },
+//   optionText: {
+//     marginLeft: scale(8),
+//     fontSize: moderateScale(15),
+//     color: Colors.TEXT,
+//   },
+//   errorText: {
+//     textAlign: "center",
+//     color: Colors.RED,
+//     fontSize: moderateScale(12),
+//     marginTop: 5,
+//   },
+// });
+
+import React from "react";
+import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import { Camera, Phone, Mail } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
+import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+import Colors from "../../utils/Colors.utils";
+import MainHeader from "../../components/MainHeader";
+import ScreenWrapper from "../../components/ScreenWrapper";
+import AppButton from "../../components/AppButton";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getProfileOptions } from "../../DATA/ProfileData";
+
+const ProfileScreen = () => {
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("token");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "SignIn" as never }],
+    });
+  };
+
+  const options = getProfileOptions(t, navigation);
+
+  return (
+    <ScreenWrapper header={<MainHeader title={t("Profile")} showBell showBack />}>
+      <View style={styles.profileCard}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: "https://i.pravatar.cc/150?img=12" }}
+            style={styles.profileImage}
+          />
+          <View style={styles.cameraIcon}>
+            <Camera size={16} color={Colors.WHITE} />
+          </View>
+        </View>
+
+        <Text style={styles.name}>James</Text>
+        <Text style={styles.role}>{t("mechanicPartner")}</Text>
+
+        <View style={styles.infoContainer}>
+          <View style={styles.infoRow}>
+            <Mail size={20} color={Colors.PRIMARY} />
+            <Text style={styles.infoText}>james8538@email.com</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Phone size={20} color={Colors.PRIMARY} />
+            <Text style={styles.infoText}>+92 301 2345678</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Map profile options directly here */}
+      <View style={styles.optionsCard}>
+        {options.map((item, index) => (
+          <TouchableOpacity
+            key={item.id}
+            style={[
+              styles.optionRow,
+              index === options.length - 1 && { borderBottomWidth: 0 },
+            ]}
+            onPress={item.onPress}
+          >
+            {item.icon}
+            <Text style={styles.optionText}>{item.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <AppButton title={t("logout")} onPress={handleLogout} type="primary" />
+    </ScreenWrapper>
+  );
+};
+
+export default ProfileScreen;
+
+const styles = StyleSheet.create({
+  profileCard: {
+    backgroundColor: Colors.WHITE,
+    marginHorizontal: scale(16),
+    borderRadius: scale(16),
+    paddingVertical: verticalScale(20),
+    alignItems: "center",
+    shadowColor: Colors.TEXT,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
+    marginTop: verticalScale(25),
+  },
+  imageContainer: { position: "relative" },
+  profileImage: {
+    width: scale(90),
+    height: scale(90),
+    borderRadius: scale(45),
+    borderWidth: 2,
+    borderColor: Colors.PRIMARY,
+    marginBottom: verticalScale(10),
+  },
+  cameraIcon: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: Colors.PRIMARY,
+    borderRadius: scale(14),
+    padding: scale(6),
+    elevation: 3,
+  },
+  name: { fontSize: moderateScale(18), fontWeight: "700", color: Colors.TEXT },
+  role: { fontSize: moderateScale(13), color: Colors.DARK_GRAY, marginBottom: verticalScale(10) },
+  infoContainer: { width: "100%", paddingHorizontal: scale(20), marginTop: verticalScale(10) },
+  infoRow: { flexDirection: "row", alignItems: "center", marginBottom: verticalScale(10) },
+  infoText: { fontSize: moderateScale(13), color: Colors.TEXT, marginLeft: scale(8) },
+  optionsCard: {
+    backgroundColor: Colors.WHITE,
+    marginHorizontal: scale(14),
+    borderRadius: scale(10),
+    marginTop: verticalScale(10),
+    paddingVertical: verticalScale(10),
+    paddingHorizontal: scale(10),
+    elevation: 2,
+    marginBottom: 15,
+  },
+  optionRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: verticalScale(12),
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.WHITE,
+  },
+  optionText: {
+    fontSize: moderateScale(14),
+    color: Colors.TEXT,
+    marginLeft: scale(10),
+  },
+});

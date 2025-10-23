@@ -14,5 +14,46 @@
   "mechanic": "Mechanic /Service Provider",
   "exclusiveServices": "Exclusive Services",
   "personalisedService": "Personalised Service of Expert Advisors",
-  "getService": "Get the service"
+  "getService": "Get the service",
+
+  "mechanicBids": "Mechanic Bids",
+  "searchMechanic": "Search mechanic...",
+  "rating": "Rating",
+  "acceptBid": "Accept Bid",
+  "online": "Online",
+  "offline": "Offline",
+  "bidAcceptedTitle": "Bid Accepted ✅",
+  "bidAcceptedMessage": "You have accepted {{mechanicName}}'s bid for ${{price}}.",
+
+  "bookingConfirmedTitle": "Booking Confirmed ✅",
+  "bookingConfirmedMessage": "{{mechanicName}} is preparing to head to your location.",
+  "unknown": "Unknown",
+  "generalRepair": "General Repair",
+  "distance": "Distance",
+  "arrivalTime": "Arrival Time",
+  "totalPrice": "Total Price",
+  "trackMechanic": "Track Mechanic",
+  "backToHome": "Back to Home",
+
+  "history": "History",
+  "active": "Active",
+  "pending": "Pending",
+  "completed": "Completed",
+  "Oil Change": "Oil Change",
+  "Brake Check": "Brake Check",
+  "Engine Repair": "Engine Repair",
+  "Battery Replacement": "Battery Replacement",
+  "Wheel Alignment": "Wheel Alignment",
+
+  "Profile": "Profile",
+  "editProfile": "Edit Profile",
+  "helpSupport": "Help & Support",
+  "aboutApp": "About App",
+   "logout": "Logout",
+  "logoutConfirmTitle": "Confirm Logout",
+  "logoutConfirmMessage": "Are you sure you want to logout?",
+  "cancel": "Cancel"
+  
+
+
 }

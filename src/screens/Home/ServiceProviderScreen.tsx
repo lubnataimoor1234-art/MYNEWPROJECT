@@ -22,9 +22,9 @@ const [search, setSearch] = useState("");
    <View  style={styles.container}>
     <MainHeader
         title="Service Provider"
-      //   showSearch 
-      //  onSearchChange={setSearch} 
-        // showProfile
+        showSearch 
+        onSearchChange={setSearch} 
+        
         showBack
       />
           <Text style={styles.title}>{strings.bikeRepair.headerTitle}</Text>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     backgroundColor: Colors.PRIMARY,
-    //paddingHorizontal: matter.padding.buttonV,
+    paddingHorizontal: matter.padding.buttonV,
   },
   title: {
     fontSize: matter.fontSize.lg,
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 4,
+    
     
   },
   servicesContainer: {

@@ -95,7 +95,7 @@ import { persistor, store } from './src/store/store';
 import BaseNavigation from "./src/navigation/Base.navigation";
 
 const App = () => {
-  const [isSingnIn, setIsSingnIn] = useState<boolean | null>(null); // null = loading
+  const [isSingnIn, setIsSingnIn] = useState<boolean | null>(null); 
 
   useEffect(() => {
     const checkLoginStatus = async () => {
