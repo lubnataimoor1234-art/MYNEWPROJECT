@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsLoggedIn, setToken, selectIsLoggedIn } from "../store/reducers/auth-persist.reducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Tab from "./Tab.navigation";
-import AuthStack from "./AuthHomeStack";
+import MainNavigation from "./Main.Navigation";
 
 
 const BaseNavigation: React.FC = () => {
@@ -26,7 +26,7 @@ const BaseNavigation: React.FC = () => {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <Tab /> : <AuthStack />}
+      {isLoggedIn ? <Tab /> : <MainNavigation />}
     </NavigationContainer>
   );
 };

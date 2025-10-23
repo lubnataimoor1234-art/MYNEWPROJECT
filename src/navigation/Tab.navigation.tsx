@@ -3,20 +3,17 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import {
-  CalendarDays,
   MessageSquare,
   User,
 } from "lucide-react-native";
 
-import AuthHomeStack from "./AuthHomeStack";
-import BidStack from "./BidStack";
 import HistoryScreen from "../screens/History/HistoryScreen";
 import { HomeTab } from "../assets/pngs";
 import Colors from "../utils/Colors.utils";
-import AuthProfileStack from "./AuthProfileStack";
+import AuthProfileStack from "./Auth.Navigation";
 import Home from "../screens/Home/ServiceProviderScreen";
 type MainTabsParamList = {
-  auth:undefined;
+  auth: undefined;
   Home: undefined;
   Bid: undefined;
   History: undefined;
@@ -58,16 +55,6 @@ const MainTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Bid"
-        component={BidStack}
-        options={{
-          tabBarLabel: "Bid",
-          tabBarIcon: ({ color, size }) => (
-            <CalendarDays color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="History"
         component={HistoryScreen}
         options={{
@@ -78,16 +65,16 @@ const MainTabs = () => {
         }}
       />
       <Tab.Screen
-  name="Profile"
-  component={AuthProfileStack}
-  options={{
-    headerShown: false,
-    tabBarLabel: "Profile",
-    tabBarIcon: ({ color }) => (
-      <User size={22} color={color} />
-    ),
-  }}
-/>
+        name="Profile"
+        component={AuthProfileStack}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color }) => (
+            <User size={22} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
